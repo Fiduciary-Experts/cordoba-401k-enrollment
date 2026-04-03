@@ -21,7 +21,7 @@ const clientConfig = {
     planSubtitle: '401(k) Plan',
 
     // Logos (leave as empty string '' to hide)
-    clientLogoUrl:    '',
+    clientLogoUrl:    'CORDOBA.png',
     fiduciaryLogoUrl: 'fiduciary-experts-logo.png',
 
     // Theme colors — Professional blue
