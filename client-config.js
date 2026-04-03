@@ -24,12 +24,12 @@ const clientConfig = {
     clientLogoUrl:    'CORDOBA.png',
     fiduciaryLogoUrl: 'fiduciary-experts-logo.png',
 
-    // Theme colors — Cordoba Corporation brand (burgundy/maroon)
+    // Theme colors — Cordoba Corporation brand (burgundy/maroon with warm gold accent)
     colors: {
         primary:      '#4a0e1a',
         primaryLight: '#7a1830',
-        accent:       '#cc2d4a',
-        accentLight:  '#e04563'
+        accent:       '#d4a03c',
+        accentLight:  '#e6b84d'
     },
 
     // ----------------------------------------------------------
