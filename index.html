@@ -118,7 +118,7 @@
 
         #header-login {
             background: var(--accent);
-            color: white;
+            color: var(--primary);
             padding: 10px 22px;
             border-radius: 6px;
             text-decoration: none;
@@ -354,7 +354,7 @@
 
         .btn-results {
             background: var(--accent);
-            color: white;
+            color: var(--primary);
         }
 
         .btn-results:hover {
@@ -805,7 +805,7 @@
         .btn-cta {
             display: inline-block;
             background: var(--accent);
-            color: white;
+            color: var(--primary);
             padding: 14px 36px;
             border-radius: 8px;
             text-decoration: none;
@@ -1008,7 +1008,7 @@
         .tool-nav-btn:hover { background: rgba(255,255,255,0.15); color: white; }
         .tool-nav-btn.active {
             background: var(--accent);
-            color: white;
+            color: var(--primary);
             border-color: var(--accent);
             font-weight: 700;
         }
@@ -1576,7 +1576,7 @@
             border-radius: 10px;
             cursor: pointer;
             background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
-            color: white;
+            color: var(--primary);
             box-shadow: 0 4px 14px rgba(0,0,0,0.15);
             transition: all 0.25s;
             letter-spacing: 0.3px;
@@ -3275,11 +3275,6 @@
         </div>
 
         <div style="margin-bottom:16px;">
-            <label style="font-weight:600;font-size:0.9rem;" data-i18n="adviceConsentEmail">Your Email (required):</label>
-            <input type="email" id="advice-consent-email" placeholder="your@email.com" oninput="checkAdviceConsent()" style="width:100%;padding:10px 14px;border:1px solid var(--border);border-radius:8px;font-size:0.92rem;font-family:inherit;margin-top:6px;">
-        </div>
-
-        <div style="margin-bottom:16px;">
             <label style="display:flex;align-items:flex-start;gap:8px;cursor:pointer;font-size:0.85rem;color:var(--text-light);">
                 <input type="checkbox" id="advice-consent-checkbox" onchange="checkAdviceConsent()" style="margin-top:3px;">
                 <span data-i18n="adviceConsentAgree">I acknowledge that I am requesting personalized investment advice from Fiduciary Experts LLC and have been provided the Form CRS and ADV Part 2B documents.</span>
@@ -3809,11 +3804,11 @@ function showResults() {
     document.getElementById('risk-badge').textContent = riskProfile;
     document.getElementById('results-description').textContent = profileDesc;
 
-    // Build recommendation list — allocation fund (plan default) shown first
+    // Build recommendation list — model portfolio (Best Match) first, allocation fund second, target date (Plan Default) last
     const recommendations = [
-        { key: allocationFund },
-        ...(modelFund ? [{ key: modelFund }] : []),
-        { key: 'targetDateDynamic' }
+        ...(modelFund ? [{ key: modelFund, reason: 'recReasonRiskProfile' }] : []),
+        ...(allocationFund ? [{ key: allocationFund, reason: 'recReasonAllocation' }] : []),
+        { key: 'targetDateDynamic', reason: 'recReasonTargetDate' }
     ];
 
     // Store results for PDF/email generation and language re-rendering
@@ -3828,7 +3823,7 @@ function showResults() {
         q3: answers.q3, q4: answers.q4, q5: answers.q5, q6: answers.q6, q7: answers.q7,
         recommendations: recommendations.map(rec => {
             const f = rec.key === 'targetDateDynamic' ? fundData.targetDateDynamic : fundData[rec.key];
-            return { key: rec.key, fund: f };
+            return { key: rec.key, fund: f, reason: rec.reason };
         })
     };
 
@@ -3857,6 +3852,7 @@ function renderResultCards() {
                 <label class="compare-check" onclick="event.stopPropagation()">
                     <input type="checkbox" onchange="toggleCompare('${rec.key}', this.checked)" value="${rec.key}">
                 </label>
+                ${rec.reason ? '<div style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.5px;color:var(--accent);font-weight:600;margin-bottom:6px;">' + t(rec.reason) + '</div>' : ''}
                 <div class="rec-card-header">
                     <span class="rec-card-type">${fund.type}</span>
                     ${fund.badge ? '<span class="rec-badge">' + fund.badge + '</span>' : ''}
@@ -6799,37 +6795,33 @@ function showAdviceConsent() {
 }
 
 function checkAdviceConsent() {
-    const email = document.getElementById('advice-consent-email').value.trim();
     const checkbox = document.getElementById('advice-consent-checkbox').checked;
     const allDownloaded = ['adv-link-crs','adv-link-2a','adv-link-eddie','adv-link-emmy','adv-link-maribel'].every(
         id => document.getElementById(id).dataset.downloaded === 'true'
     );
-    const validEmail = email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
     const btn = document.getElementById('advice-consent-btn');
-    const ready = checkbox && allDownloaded && validEmail;
+    const ready = checkbox && allDownloaded;
     btn.disabled = !ready;
     btn.style.opacity = ready ? '1' : '0.5';
     btn.style.cursor = ready ? 'pointer' : 'not-allowed';
 }
 
 function submitAdviceConsent() {
-    const email = document.getElementById('advice-consent-email').value.trim();
     const checkbox = document.getElementById('advice-consent-checkbox').checked;
     const errorEl = document.getElementById('advice-consent-error');
 
-    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        errorEl.textContent = t('pdfEmailInvalid');
-        return;
-    }
     if (!checkbox) {
         errorEl.textContent = t('adviceConsentRequired') || 'Please check the acknowledgment box.';
         return;
     }
 
-    // Store the participant's email for later use in email summary
-    enrollData.participantEmail = email;
-    document.getElementById('en-email-input').value = email;
+    // Use the email already collected in Step 1
+    const email = document.getElementById('en-participant-email').value.trim();
+    if (email) {
+        enrollData.participantEmail = email;
+        document.getElementById('en-email-input').value = email;
+    }
 
     // Close modal and proceed
     document.getElementById('advice-consent-overlay').classList.remove('active');
@@ -7042,22 +7034,19 @@ function enrollScoreQuestions() {
         const tdName = tdNameTemplate.replace('[YEAR]', targetYear);
         const bracket = (clientConfig.targetDateBrackets || []).find(b => yearsToRetire > b.minYears) || {};
 
-        // Build fund list: recommended funds first, plan default last
+        // Build fund list: model portfolio (Best Match) first, allocation fund second, target date (Plan Default) last
         const funds = [];
-        const defaultFund = Object.values(fundData).find(f => f.badge === 'Plan Default');
-        if (enrollData.allocationFund && fundData[enrollData.allocationFund] && (!defaultFund || fundData[enrollData.allocationFund].id !== defaultFund.id)) {
-            funds.push(fundData[enrollData.allocationFund]);
-        }
         if (enrollData.modelFund && fundData[enrollData.modelFund]) {
-            funds.push(fundData[enrollData.modelFund]);
-            const mf = fundData[enrollData.modelFund];
+            const mf = { ...fundData[enrollData.modelFund], _reason: 'recReasonRiskProfile' };
+            funds.push(mf);
             const ctx = getHistoricalContext(mf.stockBond);
             enrollData.expectedReturn = ctx.avg;
         }
-        const tdFund = { name: tdName, type: 'Target Date Fund', stockBond: bracket.stockBond || '', expenseRatio: fundData.targetDate?.expenseRatio || '' };
+        if (enrollData.allocationFund && fundData[enrollData.allocationFund]) {
+            funds.push({ ...fundData[enrollData.allocationFund], _reason: 'recReasonAllocation' });
+        }
+        const tdFund = { ...fundData.targetDate, name: tdName, stockBond: bracket.stockBond || '', riskLevel: bracket.riskLevel || '', performance: bracket.performance || {}, _reason: 'recReasonTargetDate' };
         funds.push(tdFund);
-        // Plan default goes last
-        if (defaultFund) funds.push(defaultFund);
 
         // "Please Select 1 Fund" instruction
         let cardsHtml = `<div style="text-align:center;margin:20px 0 16px;"><h3 style="color:var(--primary);font-size:1.2rem;" data-i18n="enrollStep2SelectOne">${t('enrollStep2SelectOne') || 'Please Select 1 Fund'}</h3></div>`;
@@ -7070,14 +7059,13 @@ function enrollScoreQuestions() {
             const highReturn = avgMatch ? (avgMatch[2] ? parseInt(avgMatch[2]) : parseInt(avgMatch[1])) : 7;
 
             // Default fund: distinct styling with dashed border and different background
-            const defaultStyle = isDefault
-                ? 'border:2px dashed var(--accent);background:linear-gradient(135deg, #faf8f0 0%, #f5f0e0 100%);'
-                : 'border:2px solid transparent;';
+            const defaultStyle = 'border:2px solid transparent;';
 
             cardsHtml += `<div class="calc-card en-fund-option" data-return="${highReturn}" data-name="${f.name}" data-idx="${idx}" onclick="enrollSelectFund(this)" style="margin-bottom:12px;cursor:pointer;${defaultStyle}transition:all 0.2s;">
-                <span style="font-size:0.75rem;text-transform:uppercase;letter-spacing:0.5px;color:${isDefault ? 'var(--accent)' : 'var(--primary)'};font-weight:600;">${f.type}</span>
-                ${f.badge ? ' <span class="rec-badge" style="' + (isDefault ? 'background:var(--accent);' : '') + '">' + f.badge + '</span>' : ''}
-                <h4 style="color:${isDefault ? 'var(--accent)' : 'var(--primary)'};margin:4px 0 8px;">${f.name}</h4>
+                ${f._reason ? '<div style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.5px;color:var(--accent);font-weight:600;margin-bottom:6px;">' + t(f._reason) + '</div>' : ''}
+                <span style="font-size:0.75rem;text-transform:uppercase;letter-spacing:0.5px;color:var(--primary);font-weight:600;">${f.type}</span>
+                ${f.badge ? ' <span class="rec-badge">' + f.badge + '</span>' : ''}
+                <h4 style="color:var(--primary);margin:4px 0 8px;">${f.name}</h4>
                 <p style="font-size:0.88rem;color:var(--text-light);margin-bottom:8px;">${getField ? getField(f, 'shortDesc') : (f.shortDesc || '')}</p>
                 <div style="font-size:0.85rem;margin-bottom:10px;"><strong>${t('allocation')}:</strong> ${f.stockBond || 'N/A'} | <strong>${t('expenseRatio')}:</strong> ${f.expenseRatio || 'N/A'}</div>
                 ${fCtx ? `<div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
@@ -7712,30 +7700,38 @@ async function enrollGeneratePDF(returnData) {
 
     if (d.enrollPath === 'advice') {
         // Advice path: show all 3 fund options
-        addText(t('enrollPdfFundIntro') || 'Based on your risk profile, here are 3 investment options available in your plan:', { size: 10, after: 6 });
+        addText(t('enrollPdfFundIntro') || 'Based on your risk profile, here are your investment options available in your plan:', { size: 10, after: 6 });
 
-        // Fund 1: Allocation Fund (Plan Default)
-        if (d.allocationFund && fundData[d.allocationFund]) {
-            const f = fundData[d.allocationFund];
-            addText((t('enrollPdfOption') || 'Option') + ' 1: ' + f.name, { size: 10, style: 'bold', after: 2 });
-            addText((t('enrollPdfType') || 'Type') + ': ' + f.type + (f.badge ? ' (' + f.badge + ')' : '') + '  |  ' + (t('allocation') || 'Allocation') + ': ' + f.stockBond + '  |  ' + (t('expenseRatio') || 'Expense Ratio') + ': ' + f.expenseRatio, { size: 9, after: 2 });
-            if (f.performance) addText((t('enrollPdfReturns') || 'Returns') + ' — 1-Yr: ' + (f.performance.yr1 || 'N/A') + '  |  5-Yr: ' + (f.performance.yr5 || 'N/A') + '  |  10-Yr: ' + (f.performance.yr10 || 'N/A'), { size: 9, color: [80, 80, 80], after: 6 });
-        }
+        let optNum = 0;
 
-        // Fund 2: Model Portfolio
+        // Fund 1: Model Portfolio (Based on Your Risk Profile)
         if (d.modelFund && fundData[d.modelFund]) {
+            optNum++;
             const f = fundData[d.modelFund];
-            addText((t('enrollPdfOption') || 'Option') + ' 2: ' + f.name, { size: 10, style: 'bold', after: 2 });
+            addText(t('recReasonRiskProfile').toUpperCase(), { size: 7.5, color: [140, 80, 40], after: 2 });
+            addText((t('enrollPdfOption') || 'Option') + ' ' + optNum + ': ' + f.name + ' (Best Match)', { size: 10, style: 'bold', after: 2 });
             addText((t('enrollPdfType') || 'Type') + ': ' + f.type + '  |  ' + (t('allocation') || 'Allocation') + ': ' + f.stockBond + '  |  ' + (t('expenseRatio') || 'Expense Ratio') + ': ' + f.expenseRatio, { size: 9, after: 2 });
             if (f.performance) addText((t('enrollPdfReturns') || 'Returns') + ' — 1-Yr: ' + (f.performance.yr1 || 'N/A') + '  |  3-Yr: ' + (f.performance.yr3 || 'N/A') + '  |  5-Yr: ' + (f.performance.yr5 || 'N/A'), { size: 9, color: [80, 80, 80], after: 6 });
         }
 
-        // Fund 3: Target Date Fund
+        // Fund 2: Allocation Fund (Matches Your Risk Profile)
+        if (d.allocationFund && fundData[d.allocationFund]) {
+            optNum++;
+            const f = fundData[d.allocationFund];
+            addText(t('recReasonAllocation').toUpperCase(), { size: 7.5, color: [140, 80, 40], after: 2 });
+            addText((t('enrollPdfOption') || 'Option') + ' ' + optNum + ': ' + f.name, { size: 10, style: 'bold', after: 2 });
+            addText((t('enrollPdfType') || 'Type') + ': ' + f.type + '  |  ' + (t('allocation') || 'Allocation') + ': ' + f.stockBond + '  |  ' + (t('expenseRatio') || 'Expense Ratio') + ': ' + f.expenseRatio, { size: 9, after: 2 });
+            if (f.performance) addText((t('enrollPdfReturns') || 'Returns') + ' — 1-Yr: ' + (f.performance.yr1 || 'N/A') + '  |  5-Yr: ' + (f.performance.yr5 || 'N/A') + '  |  10-Yr: ' + (f.performance.yr10 || 'N/A'), { size: 9, color: [80, 80, 80], after: 6 });
+        }
+
+        // Fund 3: Target Date Fund (Plan Default — Based on Your Time Horizon)
+        optNum++;
         const targetYear = Math.round((new Date().getFullYear() + (d.yearsToRetire || 30)) / 5) * 5;
         const tdNameTemplate = clientConfig.targetDateNameTemplate || '[Provider] Target Retirement [YEAR] Fund';
         const tdName = tdNameTemplate.replace('[YEAR]', targetYear);
         const bracket = (clientConfig.targetDateBrackets || []).find(b => (d.yearsToRetire || 30) > b.minYears) || {};
-        addText((t('enrollPdfOption') || 'Option') + ' 3: ' + tdName, { size: 10, style: 'bold', after: 2 });
+        addText(t('recReasonTargetDate').toUpperCase(), { size: 7.5, color: [140, 80, 40], after: 2 });
+        addText((t('enrollPdfOption') || 'Option') + ' ' + optNum + ': ' + tdName, { size: 10, style: 'bold', after: 2 });
         addText((t('enrollPdfType') || 'Type') + ': Target Date Fund  |  ' + (t('allocation') || 'Allocation') + ': ' + (bracket.stockBond || 'N/A') + '  |  ' + (t('expenseRatio') || 'Expense Ratio') + ': ' + (fundData.targetDate?.expenseRatio || 'N/A'), { size: 9, after: 2 });
         if (bracket.performance) addText((t('enrollPdfReturns') || 'Returns') + ' — 1-Yr: ' + (bracket.performance.yr1 || 'N/A') + '  |  5-Yr: ' + (bracket.performance.yr5 || 'N/A') + '  |  10-Yr: ' + (bracket.performance.yr10 || 'N/A'), { size: 9, color: [80, 80, 80], after: 8 });
     } else {
