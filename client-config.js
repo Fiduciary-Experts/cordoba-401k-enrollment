@@ -27,9 +27,9 @@ const clientConfig = {
     // Theme colors — Cordoba Corporation brand (burgundy/maroon)
     colors: {
         primary:      '#37090f',
-        primaryLight: '#93003f',
-        accent:       '#9d2335',
-        accentLight:  '#c84055'
+        primaryLight: '#6b1025',
+        accent:       '#b5243a',
+        accentLight:  '#d4465c'
     },
 
     // ----------------------------------------------------------
