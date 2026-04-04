@@ -214,12 +214,12 @@ const clientConfig = {
     // ----------------------------------------------------------
     // Score range: timeScore (0-5) + riskScore (9-37 from 9 questions) = 9-42 total
     riskProfiles: [
-        { maxScore: 16,       profile: 'Conservative',            modelFund: 'modelConservative', allocationFund: 'fpkfx' },
+        { maxScore: 16,       profile: 'Conservative',            modelFund: 'modelConservative', allocationFund: null },
         { maxScore: 22,       profile: 'Moderately Conservative', modelFund: 'modelConservative', allocationFund: 'fpkfx' },
-        { maxScore: 28,       profile: 'Moderate',                modelFund: 'modelBalance',      allocationFund: 'fpkfx' },
-        { maxScore: 33,       profile: 'Moderate Growth',         modelFund: 'modelModerate',     allocationFund: 'fpkfx' },
-        { maxScore: 38,       profile: 'Moderately Aggressive',   modelFund: 'modelAggressive',   allocationFund: 'fpkfx' },
-        { maxScore: Infinity, profile: 'Aggressive',              modelFund: 'modelAggressive',   allocationFund: 'fpkfx' }
+        { maxScore: 28,       profile: 'Moderate',                modelFund: 'modelBalance',      allocationFund: null },
+        { maxScore: 33,       profile: 'Moderate Growth',         modelFund: 'modelModerate',     allocationFund: null },
+        { maxScore: 38,       profile: 'Moderately Aggressive',   modelFund: 'modelAggressive',   allocationFund: null },
+        { maxScore: Infinity, profile: 'Aggressive',              modelFund: 'modelAggressive',   allocationFund: null }
     ],
 
     // ----------------------------------------------------------
