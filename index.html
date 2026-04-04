@@ -7805,9 +7805,10 @@ function enrollStartOver() {
         const el = document.getElementById(id); if (el) el.value = '';
     });
     document.getElementById('en-retire-age').value = '65';
-    document.getElementById('en-pretax').value = '0';
+    const defaultPretax = clientConfig.defaultPretax || 0;
+    document.getElementById('en-pretax').value = defaultPretax;
     document.getElementById('en-roth').value = '0';
-    if (document.getElementById('en-pretax-slider')) document.getElementById('en-pretax-slider').value = 0;
+    if (document.getElementById('en-pretax-slider')) document.getElementById('en-pretax-slider').value = defaultPretax;
     if (document.getElementById('en-roth-slider')) document.getElementById('en-roth-slider').value = 0;
     document.getElementById('en-res-deducted').textContent = '$0';
     document.getElementById('en-res-match').textContent = '$0';

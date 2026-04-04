@@ -92,6 +92,12 @@ const clientConfig = {
     },
 
     // ----------------------------------------------------------
+    // Default Pretax Contribution (auto-enrollment default)
+    // Slider starts at this value on page load. Set to 0 to disable.
+    // ----------------------------------------------------------
+    defaultPretax: 4,
+
+    // ----------------------------------------------------------
     // Employer Match Formula
     // ratePerDollar: match rate (0.50 = 50 cents per dollar)
     // maxContribPct: match applies up to this % of gross pay
