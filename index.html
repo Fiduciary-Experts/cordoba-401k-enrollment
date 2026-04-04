@@ -2759,6 +2759,9 @@
                 <div id="en-match-warning" style="display:none;background:#fff3cd;border-radius:8px;padding:12px 16px;margin-top:12px;font-size:0.85rem;color:#856404;">
                     <strong data-i18n="enrollStep1MatchWarn">You're not receiving the full match!</strong> <span id="en-match-warning-text"></span>
                 </div>
+                <div id="en-match-maxed" style="display:none;background:#d4edda;border-radius:8px;padding:12px 16px;margin-top:12px;font-size:0.85rem;color:#155724;">
+                    <strong id="en-match-maxed-text"></strong>
+                </div>
             </div>
         </div>
         <div class="enroll-nav">
@@ -6642,19 +6645,38 @@ function enrollCalcStep1() {
     document.getElementById('en-res-deducted').textContent = fmt(totalDeducted);
     document.getElementById('en-res-deducted-detail').textContent = `Pretax: ${fmt(pretaxAmt)} | Roth: ${fmt(rothAmt)}`;
     document.getElementById('en-res-match').textContent = fmt(matchAmt);
+    // Highlight match card green when maxed
+    const matchCard = document.getElementById('en-res-match').closest('.summary-card');
+    if (totalPct > 0 && totalPct >= match.maxContribPct) {
+        matchCard.style.background = '#d4edda';
+        matchCard.style.borderColor = '#28a745';
+    } else {
+        matchCard.style.background = '';
+        matchCard.style.borderColor = '';
+    }
     document.getElementById('en-res-total').textContent = fmt(totalPerPay);
     document.getElementById('en-res-takehome').textContent = fmt(takeHome);
 
-    // Missing match warning
+    // Match warning / success messaging
     const maxMatchAmt = grossPay * (match.maxContribPct / 100) * match.ratePerDollar;
     const missing = maxMatchAmt - matchAmt;
     const warnEl = document.getElementById('en-match-warning');
-    if (totalPct < match.maxContribPct && missing > 0.5) {
+    const maxedEl = document.getElementById('en-match-maxed');
+    if (totalPct > 0 && totalPct >= match.maxContribPct) {
+        // Full match achieved
+        warnEl.style.display = 'none';
+        document.getElementById('en-match-maxed-text').textContent =
+            `You're maximizing your employer match! You're receiving ${fmt(matchAmt)} in free money every paycheck — that's ${fmt(matchAmt * 26)}/year. Great job!`;
+        maxedEl.style.display = '';
+    } else if (totalPct > 0 && missing > 0.5) {
+        // Partial match
+        maxedEl.style.display = 'none';
         document.getElementById('en-match-warning-text').textContent =
             `Increase by ${match.maxContribPct - totalPct}% to get ${fmt(missing)} more in free match per paycheck (${fmt(missing * 26)}/year).`;
         warnEl.style.display = '';
     } else {
         warnEl.style.display = 'none';
+        maxedEl.style.display = 'none';
     }
 
     document.getElementById('en-step1-results').style.display = '';
