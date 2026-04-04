@@ -3345,7 +3345,15 @@ function initPage() {
 
     // Footer (client config takes priority, then translation fallback)
     document.getElementById('footer-name').textContent       = c.footerName || t('footerName');
-    document.getElementById('footer-disclaimer').innerHTML   = c.footerDisclaimer || t('footerDisclaimer');
+    var disclaimerText = c.footerDisclaimer || t('footerDisclaimer');
+    // Append fund data date if configured
+    if (c.fundDataAsOf && disclaimerText) {
+        disclaimerText = disclaimerText.replace(
+            /Fund performance data sourced from Fi360 \/ Morningstar\./,
+            'Fund performance data sourced from Fi360 / Morningstar. Trailing returns as of ' + c.fundDataAsOf + '.'
+        );
+    }
+    document.getElementById('footer-disclaimer').innerHTML   = disclaimerText;
 
     // Enabled tools — hide nav tabs and tool sections for disabled tools
     // Default: all tools enabled. Set enabledTools in client-config to limit.
@@ -3412,7 +3420,14 @@ function setLanguage(lang) {
     }
     // Update footer (client config takes priority, then translation fallback)
     document.getElementById('footer-name').textContent = clientConfig.footerName || t('footerName');
-    document.getElementById('footer-disclaimer').innerHTML = clientConfig.footerDisclaimer || t('footerDisclaimer');
+    var langDisclaimer = clientConfig.footerDisclaimer || t('footerDisclaimer');
+    if (clientConfig.fundDataAsOf && langDisclaimer) {
+        langDisclaimer = langDisclaimer.replace(
+            /Fund performance data sourced from Fi360 \/ Morningstar\./,
+            'Fund performance data sourced from Fi360 / Morningstar. Trailing returns as of ' + clientConfig.fundDataAsOf + '.'
+        );
+    }
+    document.getElementById('footer-disclaimer').innerHTML = langDisclaimer;
 }
 
 function applyTranslations() {
