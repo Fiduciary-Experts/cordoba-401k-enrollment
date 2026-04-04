@@ -3074,7 +3074,7 @@
                     <div class="calc-input-grid">
                         <div class="calc-field">
                             <label>Facility Name</label>
-                            <input type="text" id="admin-facility" value="" placeholder="e.g. Longwood Management" style="width:100%;padding:10px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:1rem;font-family:inherit;">
+                            <input type="text" id="admin-facility" value="" placeholder="e.g. Main Office" style="width:100%;padding:10px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:1rem;font-family:inherit;">
                         </div>
                         <div class="calc-field">
                             <label>Date of Visit</label>
@@ -3343,9 +3343,9 @@ function initPage() {
     document.getElementById('cta-title').textContent = c.ctaTitle;
     document.getElementById('cta-body').textContent  = c.ctaBody;
 
-    // Footer (use translation if available, fallback to client config)
-    document.getElementById('footer-name').textContent       = t('footerName') || c.footerName;
-    document.getElementById('footer-disclaimer').innerHTML   = t('footerDisclaimer') || c.footerDisclaimer;
+    // Footer (client config takes priority, then translation fallback)
+    document.getElementById('footer-name').textContent       = c.footerName || t('footerName');
+    document.getElementById('footer-disclaimer').innerHTML   = c.footerDisclaimer || t('footerDisclaimer');
 
     // Enabled tools — hide nav tabs and tool sections for disabled tools
     // Default: all tools enabled. Set enabledTools in client-config to limit.
@@ -3410,9 +3410,9 @@ function setLanguage(lang) {
     if (document.getElementById('en-step3-results')?.style.display !== 'none' && enrollData.grossPay) {
         enrollCalcStep3();
     }
-    // Update footer with translated text
-    document.getElementById('footer-name').textContent = t('footerName') || clientConfig.footerName;
-    document.getElementById('footer-disclaimer').innerHTML = t('footerDisclaimer') || clientConfig.footerDisclaimer;
+    // Update footer (client config takes priority, then translation fallback)
+    document.getElementById('footer-name').textContent = clientConfig.footerName || t('footerName');
+    document.getElementById('footer-disclaimer').innerHTML = clientConfig.footerDisclaimer || t('footerDisclaimer');
 }
 
 function applyTranslations() {
@@ -3573,7 +3573,7 @@ const _removedInlineData = {
         turnover: 'Low',
         minInvestment: 'None',
         bestFor: 'Participants who want a professionally managed, hands-off approach to retirement investing.',
-        description: 'Fidelity Freedom K6 Target Retirement Funds are all-in-one solutions available in the Longwood Management 401(k) plan. You choose the fund closest to your expected retirement year, and Fidelity automatically adjusts the asset allocation over time through a "glide path." The fund invests in a diversified mix of Fidelity equity, bond, and short-term funds, shifting from stocks to bonds as retirement approaches.',
+        description: 'Fidelity Freedom K6 Target Retirement Funds are all-in-one solutions available in your employer\'s 401(k) plan. You choose the fund closest to your expected retirement year, and Fidelity automatically adjusts the asset allocation over time through a "glide path." The fund invests in a diversified mix of Fidelity equity, bond, and short-term funds, shifting from stocks to bonds as retirement approaches.',
         allocation: [],  // Set dynamically
         pros: ['Fully automatic rebalancing and glide path', 'Simple one-fund solution requiring no maintenance', 'Low expense ratio for the K6 share class', 'Managed by Fidelity\'s experienced multi-asset team'],
         cons: ['Less control over individual holdings', 'One-size-fits-all approach may not suit everyone', 'Fixed glide path does not account for individual circumstances']
