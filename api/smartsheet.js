@@ -9,6 +9,11 @@ function checkRateLimit(ip) {
     return true;
 }
 
+// Allowed endpoint patterns for POST requests (prevents SSRF via arbitrary paths)
+// Matches: 'rows', 'columns', 'attachments', 'rows/12345/attachments'
+var ALLOWED_ENDPOINT_PATTERN = /^(rows|columns|attachments)(\/\d+\/(attachments|columns))?$/;
+var ALLOWED_METHODS = ['GET', 'POST', 'PUT', 'DELETE'];
+
 export default async function handler(req, res) {
     try {
         var clientIp = req.headers['x-forwarded-for'] || req.socket.remoteAddress || 'unknown';
@@ -30,10 +35,23 @@ export default async function handler(req, res) {
 
         const headers = { 'Authorization': 'Bearer ' + apiToken };
 
+        // Validate sheetId format (must be numeric)
+        function validateSheetId(id) {
+            return id && /^\d+$/.test(id);
+        }
+
+        // Optionally restrict to allowed sheet IDs via env var
+        function isSheetAllowed(id) {
+            var allowed = process.env.ALLOWED_SHEET_IDS;
+            if (!allowed) return true; // no restriction if env var not set
+            return allowed.split(',').map(function(s) { return s.trim(); }).includes(id);
+        }
+
         // GET: fetch sheet rows
         if (req.method === 'GET') {
             const sheetId = req.query.sheetId;
-            if (!sheetId) return res.status(400).json({ error: 'Missing sheetId' });
+            if (!validateSheetId(sheetId)) return res.status(400).json({ error: 'Invalid or missing sheetId' });
+            if (!isSheetAllowed(sheetId)) return res.status(403).json({ error: 'Sheet not allowed' });
             const resp = await fetch('https://api.smartsheet.com/2.0/sheets/' + sheetId, { headers: headers });
             const data = await resp.json();
             return res.status(resp.status).json(data);
@@ -43,7 +61,9 @@ export default async function handler(req, res) {
         if (req.method === 'DELETE') {
             const sheetId = req.query.sheetId;
             const rowId = req.query.rowId;
-            if (!sheetId || !rowId) return res.status(400).json({ error: 'Missing sheetId or rowId' });
+            if (!validateSheetId(sheetId)) return res.status(400).json({ error: 'Invalid or missing sheetId' });
+            if (!rowId || !/^\d+$/.test(rowId)) return res.status(400).json({ error: 'Invalid or missing rowId' });
+            if (!isSheetAllowed(sheetId)) return res.status(403).json({ error: 'Sheet not allowed' });
             const resp = await fetch(
                 'https://api.smartsheet.com/2.0/sheets/' + sheetId + '/rows?ids=' + rowId + '&ignoreRowsNotFound=true',
                 { method: 'DELETE', headers: headers }
@@ -59,20 +79,33 @@ export default async function handler(req, res) {
             const method = (req.body && req.body.method) || 'POST';
             const body = req.body && req.body.body;
 
-            if (!sheetId) return res.status(400).json({ error: 'Missing sheetId in body' });
+            if (!validateSheetId(sheetId)) return res.status(400).json({ error: 'Invalid or missing sheetId' });
+            if (!isSheetAllowed(sheetId)) return res.status(403).json({ error: 'Sheet not allowed' });
+
+            // Restrict endpoint to allowlist pattern (prevents SSRF)
+            if (!ALLOWED_ENDPOINT_PATTERN.test(endpoint)) {
+                return res.status(400).json({ error: 'Invalid endpoint' });
+            }
+
+            // Restrict HTTP method to allowlist
+            if (!ALLOWED_METHODS.includes(method.toUpperCase())) {
+                return res.status(400).json({ error: 'Invalid method' });
+            }
 
             const url = 'https://api.smartsheet.com/2.0/sheets/' + sheetId + '/' + endpoint;
 
             const fetchOpts = {
-                method: method,
+                method: method.toUpperCase(),
                 headers: { 'Authorization': 'Bearer ' + apiToken },
             };
 
             if (req.body.pdfBase64) {
                 var pdfBuffer = Buffer.from(req.body.pdfBase64, 'base64');
+                // Sanitize filename: strip path separators and control characters
+                var filename = (req.body.filename || 'attachment.pdf').replace(/[\/\\<>:"|?*\x00-\x1f]/g, '_');
                 fetchOpts.headers['Content-Type'] = 'application/pdf';
                 fetchOpts.headers['Content-Length'] = String(pdfBuffer.length);
-                fetchOpts.headers['Content-Disposition'] = 'attachment; filename="' + (req.body.filename || 'attachment.pdf') + '"';
+                fetchOpts.headers['Content-Disposition'] = 'attachment; filename="' + filename + '"';
                 fetchOpts.body = pdfBuffer;
             } else if (body) {
                 fetchOpts.headers['Content-Type'] = 'application/json';
@@ -93,6 +126,6 @@ export default async function handler(req, res) {
         return res.status(405).json({ error: 'Method not allowed' });
 
     } catch (err) {
-        return res.status(500).json({ error: err.message, stack: err.stack });
+        return res.status(500).json({ error: 'Internal server error' });
     }
 }

@@ -6,9 +6,10 @@
     <title></title>
     <script src="client-config.js"></script>
     <script src="translations.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' cdnjs.cloudflare.com cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'self' https://api.emailjs.com https://api.smartsheet.com https://financialmodelingprep.com; font-src 'self'; frame-ancestors 'none';">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" integrity="sha384-JcnsjUPPylna1s1fvi1u12X5qjY5OL56iySh75FdtrwhO/SWXgMjoVqcKyIIWOLk" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js" integrity="sha384-NrKB+u6Ts6AtkIhwPixiKTzgSKNblyhlk0Sohlgar9UHUBzai/sgnNNWWd291xqt" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" integrity="sha384-SALc35EccAf6RzGw4iNsyj7kTPr33K7RoGzYu+7heZhT8s0GZouafRiCg1qy44AS" crossorigin="anonymous"></script>
     <style>
         :root {
             --primary: #1a3a5c;
@@ -8409,7 +8410,7 @@ function simpleHash(str) {
     }
     return hash.toString(36);
 }
-const ADMIN_PASSWORD_HASH = clientConfig.adminPasswordHash || simpleHash('Longwood2026!');
+const ADMIN_PASSWORD_HASH = clientConfig.adminPasswordHash || null;
 let adminAuthenticated = false;
 let adminSubmissions = []; // Now loaded from Smartsheet, localStorage is fallback only
 let adminSmartsheetLoaded = false;
@@ -8476,6 +8477,10 @@ async function adminFetchFromSmartsheet() {
 }
 
 function adminLogin() {
+    if (!ADMIN_PASSWORD_HASH) {
+        document.getElementById('admin-login-error').textContent = 'Admin login is not configured for this plan.';
+        return;
+    }
     const pw = document.getElementById('admin-password').value;
     if (simpleHash(pw) === ADMIN_PASSWORD_HASH) {
         adminAuthenticated = true;
@@ -8539,6 +8544,8 @@ function adminResetSessionTimer() {
 function adminLogout() {
     if (adminSessionTimer) clearTimeout(adminSessionTimer);
     adminAuthenticated = false;
+    localStorage.removeItem('enrollDataForAdmin');
+    localStorage.removeItem('adminSubmissions');
     document.getElementById('admin-panel').style.display = 'none';
     document.getElementById('admin-login').style.display = '';
 }
@@ -8718,6 +8725,7 @@ async function adminSubmitToSmartsheet() {
 
                         if (attachResp.ok) {
                             statusEl.textContent = 'Submitted with PDF attached!';
+                            localStorage.removeItem('enrollDataForAdmin');
                         } else {
                             const errText = await attachResp.text();
                             console.error('PDF attachment failed:', attachResp.status, errText);

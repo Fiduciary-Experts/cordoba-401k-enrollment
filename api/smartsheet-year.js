@@ -1,3 +1,14 @@
+// Simple in-memory rate limiter (per IP, 10 requests per minute)
+var rateLimitMap = {};
+function checkRateLimit(ip) {
+    var now = Date.now();
+    if (!rateLimitMap[ip]) rateLimitMap[ip] = [];
+    rateLimitMap[ip] = rateLimitMap[ip].filter(function(t) { return t > now - 60000; });
+    if (rateLimitMap[ip].length >= 10) return false;
+    rateLimitMap[ip].push(now);
+    return true;
+}
+
 export default async function handler(req, res) {
     const ALLOWED_ORIGIN = (process.env.ALLOWED_ORIGIN || '*').trim();
     res.setHeader('Access-Control-Allow-Origin', ALLOWED_ORIGIN);
@@ -6,6 +17,11 @@ export default async function handler(req, res) {
 
     if (req.method === 'OPTIONS') return res.status(200).end();
     if (req.method !== 'GET') return res.status(405).json({ error: 'Method not allowed' });
+
+    var clientIp = req.headers['x-forwarded-for'] || req.socket.remoteAddress || 'unknown';
+    if (!checkRateLimit(clientIp)) {
+        return res.status(429).json({ error: 'Too many requests. Please try again later.' });
+    }
 
     const apiToken = process.env.SMARTSHEET_API_TOKEN;
     if (!apiToken) {
@@ -17,8 +33,16 @@ export default async function handler(req, res) {
         return res.status(400).json({ error: 'Missing required query params' });
     }
 
+    // Validate IDs are numeric
+    if (!/^\d+$/.test(workspaceId) || !/^\d+$/.test(templateSheetId)) {
+        return res.status(400).json({ error: 'Invalid workspaceId or templateSheetId format' });
+    }
+
+    // Sanitize planName: strip special characters, limit length
+    const safePlanName = (planName || 'Participant Tracking').replace(/[<>"'`\\\/]/g, '').substring(0, 100);
+
     const year = new Date().getFullYear();
-    const sheetName = `${year} ${planName || 'Participant Tracking'}`;
+    const sheetName = `${year} ${safePlanName}`;
     const headers = { 'Authorization': `Bearer ${apiToken}` };
 
     try {
@@ -54,7 +78,7 @@ export default async function handler(req, res) {
         const createData = await createResp.json();
 
         if (!createResp.ok) {
-            return res.status(createResp.status).json({ error: 'Failed to create sheet', details: createData });
+            return res.status(createResp.status).json({ error: 'Failed to create sheet' });
         }
 
         const newSheetId = createData.result.id;
@@ -69,7 +93,7 @@ export default async function handler(req, res) {
         return res.status(200).json({ sheetId: String(newSheetId), columnMap, year, created: true });
 
     } catch (e) {
-        return res.status(500).json({ error: e.message });
+        return res.status(500).json({ error: 'Internal server error' });
     }
 }
 
