@@ -179,15 +179,7 @@ const clientConfig = {
     // Footer
     // ----------------------------------------------------------
     footerName:       'Cordoba Corporation 401(k) Plan',
-    footerDisclaimer: (() => {
-        // Auto-calculate the most recent completed quarter-end date
-        const now = new Date();
-        const q = Math.floor((now.getMonth()) / 3); // current quarter (0-3)
-        const quarterEnds = [[12,31,-1],[3,31,0],[6,30,0],[9,30,0]]; // [month, day, yearOffset]
-        const qe = quarterEnds[q];
-        const qDate = `${qe[0]}/${qe[1]}/${now.getFullYear() + qe[2]}`;
-        return 'This 401(k) Enrollment Guide is made available through Fiduciary Experts LLC, the registered investment adviser and fiduciary for the Cordoba Corporation 401(k) Plan under ERISA. The guide provides educational information to help you understand your retirement plan options, contribution strategies, and risk tolerance. For participants who accept the terms and conditions and review the required ADV disclosure documents, the Comprehensive Guide option provides personalized investment advice tailored to your risk profile.<br>This guide does not constitute official enrollment in your employer\'s retirement plan. To officially enroll, you must log in to Fidelity NetBenefits at nb.fidelity.com and make your investment selections directly. Until you complete that process, you are not enrolled in the plan.<br>All projections are hypothetical estimates based on the assumptions entered and do not guarantee future results. Actual investment returns will fluctuate and may be significantly higher or lower than the rates assumed. Past performance does not guarantee future results. Fund performance data sourced from Fi360 / Morningstar. Trailing returns as of ' + qDate + '.<br>Investment and Insurance Products: NOT FDIC Insured | NO Bank Guarantee | MAY Lose Value.';
-    })(),
+    footerDisclaimer: 'This 401(k) Enrollment Guide is made available through Fiduciary Experts LLC, the registered investment adviser and fiduciary for the Cordoba Corporation 401(k) Plan under ERISA. The guide provides educational information to help you understand your retirement plan options, contribution strategies, and risk tolerance. For participants who accept the terms and conditions and review the required ADV disclosure documents, the Comprehensive Guide option provides personalized investment advice tailored to your risk profile.<br>This guide does not constitute official enrollment in your employer\'s retirement plan. To officially enroll, you must log in to Fidelity NetBenefits at nb.fidelity.com and make your investment selections directly. Until you complete that process, you are not enrolled in the plan.<br>All projections are hypothetical estimates based on the assumptions entered and do not guarantee future results. Actual investment returns will fluctuate and may be significantly higher or lower than the rates assumed. Past performance does not guarantee future results. Fund performance data sourced from Fi360 / Morningstar. Trailing returns as of 12/31/2025.<br>Investment and Insurance Products: NOT FDIC Insured | NO Bank Guarantee | MAY Lose Value.',
 
     // ----------------------------------------------------------
     // Target Date Fund — Name Template & Brackets
