@@ -2214,11 +2214,11 @@
             </div>
             <div class="calc-field" style="display:none;">
                 <label>Current Contribution / Paycheck</label>
-                <div class="input-with-prefix"><span>$</span><input type="number" id="cg-current-contrib" min="0" step="0.01" placeholder="auto" readonly></div>
+                <div class="input-with-prefix"><span>$</span><input type="text" id="cg-current-contrib" placeholder="auto" readonly></div>
             </div>
             <div class="calc-field" style="display:none;">
                 <label>Current Employer Match / Paycheck</label>
-                <div class="input-with-prefix"><span>$</span><input type="number" id="cg-current-match" min="0" step="0.01" value="0" readonly placeholder="auto"></div>
+                <div class="input-with-prefix"><span>$</span><input type="text" id="cg-current-match" value="0" readonly placeholder="auto"></div>
             </div>
             <div class="calc-field">
                 <label>Pretax Change</label>
@@ -2250,11 +2250,11 @@
             </div>
             <div class="calc-field" style="display:none;">
                 <label>Proposed Contribution / Paycheck</label>
-                <div class="input-with-prefix"><span>$</span><input type="number" id="cg-proposed-contrib" min="0" step="0.01" placeholder="auto" readonly></div>
+                <div class="input-with-prefix"><span>$</span><input type="text" id="cg-proposed-contrib" placeholder="auto" readonly></div>
             </div>
             <div class="calc-field" style="display:none;">
                 <label>Proposed Employer Match / Paycheck</label>
-                <div class="input-with-prefix"><span>$</span><input type="number" id="cg-proposed-match" min="0" step="0.01" value="0" readonly placeholder="auto"></div>
+                <div class="input-with-prefix"><span>$</span><input type="text" id="cg-proposed-match" value="0" readonly placeholder="auto"></div>
             </div>
         </div>
         <button class="btn btn-next" onclick="calculateGrowth()" data-i18n="cgCalculate">Project Growth</button>
@@ -2864,8 +2864,8 @@
                 <h4 style="margin-bottom:4px;color:var(--primary);" data-i18n="enrollStep3WithdrawalLabel">How much do you want to withdraw per month?</h4>
                 <p style="font-size:0.82rem;color:var(--text-light);margin-bottom:12px;" data-i18n="enrollStep3WithdrawalDesc">Starting amount based on a 30-year sustainable withdrawal from your projected savings.</p>
                 <div style="display:flex;align-items:center;gap:16px;margin-bottom:8px;">
-                    <input type="range" id="en-withdrawal-slider" min="0" max="10000" step="100" value="0" oninput="document.getElementById('en-withdrawal-input').value=this.value;enrollUpdateWithdrawal();" style="flex:1;accent-color:var(--primary);">
-                    <div class="input-with-prefix" style="width:130px;"><span>$</span><input type="number" id="en-withdrawal-input" min="0" max="50000" step="100" value="0" oninput="document.getElementById('en-withdrawal-slider').value=this.value;enrollUpdateWithdrawal();"></div>
+                    <input type="range" id="en-withdrawal-slider" min="0" max="10000" step="100" value="0" oninput="document.getElementById('en-withdrawal-input').value=this.value;fmtMoneyInput(document.getElementById('en-withdrawal-input'));enrollUpdateWithdrawal();" style="flex:1;accent-color:var(--primary);">
+                    <div class="input-with-prefix" style="width:130px;"><span>$</span><input type="text" id="en-withdrawal-input" inputmode="numeric" value="0" oninput="fmtMoneyInput(this);document.getElementById('en-withdrawal-slider').value=(this.value||'').replace(/,/g,'');enrollUpdateWithdrawal();"></div>
                 </div>
                 <div style="display:flex;gap:10px;margin-bottom:12px;">
                     <button id="en-reset-wd-btn" onclick="enrollResetWithdrawal()" style="display:none;padding:6px 14px;background:transparent;color:var(--text-light);border:1px solid var(--border);border-radius:6px;font-size:0.82rem;cursor:pointer;font-family:inherit;" data-i18n="btnReset">Reset</button>
@@ -4704,8 +4704,8 @@ function updateGrowthCalc() {
     const curTotalPct = curPretax + curRoth;
     const currentMatchPct = Math.min(curTotalPct, match.maxContribPct);
     const currentMatchAmt = gross * (currentMatchPct / 100) * match.ratePerDollar;
-    document.getElementById('cg-current-contrib').value = (gross > 0 || net > 0) ? currentContrib.toFixed(2) : '';
-    document.getElementById('cg-current-match').value = (gross > 0 || net > 0) ? currentMatchAmt.toFixed(2) : '';
+    document.getElementById('cg-current-contrib').value = (gross > 0 || net > 0) ? currentContrib.toFixed(2) : ''; fmtMoneyInput(document.getElementById('cg-current-contrib'));
+    document.getElementById('cg-current-match').value = (gross > 0 || net > 0) ? currentMatchAmt.toFixed(2) : ''; fmtMoneyInput(document.getElementById('cg-current-match'));
 
     // Proposed contribution = current +/- change
     const pretaxChange = parseFloat(document.getElementById('cg-pretax-change').value) || 0;
@@ -4726,8 +4726,8 @@ function updateGrowthCalc() {
     const propTotalPct = newPretax + newRoth;
     const proposedMatchPct = Math.min(propTotalPct, match.maxContribPct);
     const proposedMatchAmt = gross * (proposedMatchPct / 100) * match.ratePerDollar;
-    document.getElementById('cg-proposed-contrib').value = (gross > 0 || net > 0) ? proposedContrib.toFixed(2) : '';
-    document.getElementById('cg-proposed-match').value = (gross > 0 || net > 0) ? proposedMatchAmt.toFixed(2) : '';
+    document.getElementById('cg-proposed-contrib').value = (gross > 0 || net > 0) ? proposedContrib.toFixed(2) : ''; fmtMoneyInput(document.getElementById('cg-proposed-contrib'));
+    document.getElementById('cg-proposed-match').value = (gross > 0 || net > 0) ? proposedMatchAmt.toFixed(2) : ''; fmtMoneyInput(document.getElementById('cg-proposed-match'));
 }
 
 function calculateGrowth() {
@@ -4735,10 +4735,10 @@ function calculateGrowth() {
     const age        = parseInt(document.getElementById('cg-age').value) || 0;
     const retireAge  = parseInt(document.getElementById('cg-retire-age').value) || 0;
     const returnRate = (parseFloat(document.getElementById('cg-return').value) || 7) / 100;
-    const currentC   = parseFloat(document.getElementById('cg-current-contrib').value) || 0;
-    const proposedC  = parseFloat(document.getElementById('cg-proposed-contrib').value) || 0;
-    const currentM   = parseFloat(document.getElementById('cg-current-match').value) || 0;
-    const proposedM  = parseFloat(document.getElementById('cg-proposed-match').value) || 0;
+    const currentC   = parseFloat((document.getElementById('cg-current-contrib').value||'').replace(/,/g,'')) || 0;
+    const proposedC  = parseFloat((document.getElementById('cg-proposed-contrib').value||'').replace(/,/g,'')) || 0;
+    const currentM   = parseFloat((document.getElementById('cg-current-match').value||'').replace(/,/g,'')) || 0;
+    const proposedM  = parseFloat((document.getElementById('cg-proposed-match').value||'').replace(/,/g,'')) || 0;
 
     if (age <= 0) { alert(t('alertAgeRequired')); return; }
     if (retireAge <= age) { alert(t('alertRetireAgeGt')); return; }
@@ -7147,7 +7147,7 @@ function enrollScoreQuestions() {
 function enrollResetWithdrawal() {
     const sustainable = enrollData._sustainable30 || 0;
     document.getElementById('en-withdrawal-slider').value = sustainable;
-    document.getElementById('en-withdrawal-input').value = sustainable;
+    document.getElementById('en-withdrawal-input').value = sustainable; fmtMoneyInput(document.getElementById('en-withdrawal-input'));
     enrollUpdateWithdrawal();
 }
 
@@ -7270,11 +7270,11 @@ function enrollRecalcContrib() {
     const savedPct = newPct;
     const savedPretax = newPretax;
     const savedRoth = newRoth;
-    const savedWithdrawal = document.getElementById('en-withdrawal-input').value;
+    const savedWithdrawal = (document.getElementById('en-withdrawal-input').value||'').replace(/,/g,'');
     enrollCalcStep3();
     // Restore everything to what the participant had set
     document.getElementById('en-withdrawal-slider').value = savedWithdrawal;
-    document.getElementById('en-withdrawal-input').value = savedWithdrawal;
+    document.getElementById('en-withdrawal-input').value = savedWithdrawal; fmtMoneyInput(document.getElementById('en-withdrawal-input'));
     enrollUpdateWithdrawal();
     document.getElementById('en-gap-slider').value = savedPct;
     document.getElementById('en-gap-pct').value = savedPct;
@@ -7292,7 +7292,7 @@ function enrollRecalcContrib() {
 function enrollSetTargetWithdrawal() {
     const target = enrollData._targetWithdrawal || 0;
     document.getElementById('en-withdrawal-slider').value = target;
-    document.getElementById('en-withdrawal-input').value = target;
+    document.getElementById('en-withdrawal-input').value = target; fmtMoneyInput(document.getElementById('en-withdrawal-input'));
     enrollUpdateWithdrawal();
 }
 
@@ -7305,7 +7305,7 @@ function enrollUpdateWithdrawal() {
     const realRateRetire = d._realRateRetire || 0.03;
     const retireAge = d.retireAge || 65;
 
-    const withdrawal = parseFloat(document.getElementById('en-withdrawal-input').value) || 0;
+    const withdrawal = parseFloat((document.getElementById('en-withdrawal-input').value||'').replace(/,/g,'')) || 0;
     const monthlyIncome = withdrawal + ss + pension;
 
     // Gap based on 30-year sustainable income vs target
@@ -7670,7 +7670,7 @@ function enrollCalcStep3() {
     const input = document.getElementById('en-withdrawal-input');
     slider.max = sliderMax;
     slider.value = defaultWithdrawal;
-    input.value = defaultWithdrawal;
+    input.value = defaultWithdrawal; fmtMoneyInput(input);
 
     // ── 8. SETUP CONTRIBUTION SLIDER ──
     // Only set original values once (first time Step 3 loads from Step 1 selections)
