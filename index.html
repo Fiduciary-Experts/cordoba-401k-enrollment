@@ -2069,11 +2069,11 @@
         <div class="calc-input-grid">
             <div class="calc-field">
                 <label data-i18n="pcGrossPay">Gross 2-Week Paycheck</label>
-                <div class="input-with-prefix"><span>$</span><input type="number" id="pc-gross" min="0" step="0.01" placeholder="e.g. 2500"></div>
+                <div class="input-with-prefix"><span>$</span><input type="text" id="pc-gross" inputmode="decimal" placeholder="e.g. 2,500" oninput="fmtMoneyInput(this)"></div>
             </div>
             <div class="calc-field">
                 <label data-i18n="pcNetPay">Net 2-Week Paycheck (current take-home)</label>
-                <div class="input-with-prefix"><span>$</span><input type="number" id="pc-net" min="0" step="0.01" placeholder="e.g. 1800"></div>
+                <div class="input-with-prefix"><span>$</span><input type="text" id="pc-net" inputmode="decimal" placeholder="e.g. 1,800" oninput="fmtMoneyInput(this)"></div>
             </div>
             <div class="calc-field">
                 <label data-i18n="pcPretaxPct">Pretax Contribution %</label>
@@ -2085,7 +2085,7 @@
             </div>
             <div class="calc-field">
                 <label data-i18n="pcBalance">Current Account Balance</label>
-                <div class="input-with-prefix"><span>$</span><input type="number" id="pc-balance" min="0" step="0.01" value="0" placeholder="e.g. 15000"></div>
+                <div class="input-with-prefix"><span>$</span><input type="text" id="pc-balance" inputmode="decimal" value="0" placeholder="e.g. 15,000" oninput="fmtMoneyInput(this)"></div>
             </div>
         </div>
         <button class="btn btn-next" onclick="calculatePaycheck()" data-i18n="pcCalculate">Calculate</button>
@@ -2182,7 +2182,7 @@
         <div class="calc-input-grid">
             <div class="calc-field">
                 <label data-i18n="cgBalance">Current Balance</label>
-                <div class="input-with-prefix"><span>$</span><input type="number" id="cg-balance" min="0" step="0.01" placeholder="e.g. 15000"></div>
+                <div class="input-with-prefix"><span>$</span><input type="text" id="cg-balance" inputmode="decimal" placeholder="e.g. 15,000" oninput="fmtMoneyInput(this)"></div>
             </div>
             <div class="calc-field">
                 <label data-i18n="cgAge">Current Age</label>
@@ -2198,11 +2198,11 @@
             </div>
             <div class="calc-field cg-standalone-field">
                 <label data-i18n="cgGrossPay">Gross 2-Week Paycheck</label>
-                <div class="input-with-prefix"><span>$</span><input type="number" id="cg-gross" min="0" step="0.01" placeholder="e.g. 2500" oninput="updateGrowthCalc()"></div>
+                <div class="input-with-prefix"><span>$</span><input type="text" id="cg-gross" inputmode="decimal" placeholder="e.g. 2,500" oninput="fmtMoneyInput(this);updateGrowthCalc()"></div>
             </div>
             <div class="calc-field cg-standalone-field">
                 <label data-i18n="cgNetPay">Net 2-Week Paycheck</label>
-                <div class="input-with-prefix"><span>$</span><input type="number" id="cg-net" min="0" step="0.01" placeholder="e.g. 1800" oninput="updateGrowthCalc()"></div>
+                <div class="input-with-prefix"><span>$</span><input type="text" id="cg-net" inputmode="decimal" placeholder="e.g. 1,800" oninput="fmtMoneyInput(this);updateGrowthCalc()"></div>
             </div>
             <div class="calc-field cg-standalone-field">
                 <label data-i18n="cgCurrentPretax">Current Pretax Contribution %</label>
@@ -2466,11 +2466,11 @@
             </div>
             <div class="calc-field">
                 <label data-i18n="igSocialSecurity">Monthly Social Security (Net)</label>
-                <div class="input-with-prefix"><span>$</span><input type="number" id="ig-social-security" min="0" step="1" value="1200"></div>
+                <div class="input-with-prefix"><span>$</span><input type="text" id="ig-social-security" inputmode="numeric" value="1,200" oninput="fmtMoneyInput(this)"></div>
             </div>
             <div class="calc-field">
                 <label data-i18n="igPension">Monthly Pension (Optional)</label>
-                <div class="input-with-prefix"><span>$</span><input type="number" id="ig-pension" min="0" step="1" value="0" placeholder="0"></div>
+                <div class="input-with-prefix"><span>$</span><input type="text" id="ig-pension" inputmode="numeric" value="0" placeholder="0" oninput="fmtMoneyInput(this)"></div>
             </div>
             <div class="calc-field">
                 <label data-i18n="igCurrentAge">Current Age</label>
@@ -2714,7 +2714,7 @@
                         </select>
                         <button id="en-annual-toggle" onclick="enrollToggleAnnual()" style="padding:6px 14px;background:transparent;color:var(--primary);border:1.5px solid var(--primary);border-radius:6px;font-size:0.82rem;cursor:pointer;font-family:inherit;font-weight:600;white-space:nowrap;" data-i18n="payToggleAnnual">Use Annual Salary</button>
                     </div>
-                    <div class="input-with-prefix"><span>$</span><input type="number" id="en-pay-input" autocomplete="off" min="0" step="0.01" placeholder="e.g. 2500" oninput="enrollCalcStep1()"></div>
+                    <div class="input-with-prefix"><span>$</span><input type="text" id="en-pay-input" autocomplete="off" inputmode="decimal" placeholder="e.g. 2,500" oninput="fmtMoneyInput(this);enrollCalcStep1()"></div>
                     <p id="en-pay-hint" style="font-size:0.78rem;color:var(--text-light);margin-top:4px;min-height:1em;"></p>
                 </div>
                 <!-- Hidden fields for compatibility -->
@@ -2820,11 +2820,11 @@
             <div class="calc-input-grid">
                 <div class="calc-field">
                     <label data-i18n="enrollStep3SS">Monthly Social Security (Net)</label>
-                    <div class="input-with-prefix"><span>$</span><input type="number" id="en-ss" min="0" step="1" value="1200" oninput="enrollCalcStep3()"></div>
+                    <div class="input-with-prefix"><span>$</span><input type="text" id="en-ss" inputmode="numeric" value="1,200" oninput="fmtMoneyInput(this);enrollCalcStep3()"></div>
                 </div>
                 <div class="calc-field">
                     <label data-i18n="enrollStep3Pension">Monthly Pension (Optional)</label>
-                    <div class="input-with-prefix"><span>$</span><input type="number" id="en-pension" min="0" step="1" value="0" oninput="enrollCalcStep3()"></div>
+                    <div class="input-with-prefix"><span>$</span><input type="text" id="en-pension" inputmode="numeric" value="0" oninput="fmtMoneyInput(this);enrollCalcStep3()"></div>
                 </div>
             </div>
         </div>
@@ -4521,11 +4521,11 @@ document.addEventListener('DOMContentLoaded', function() {
 // ══════════════════════════════════════════════════════════════════════
 
 function calculatePaycheck() {
-    const gross   = parseFloat(document.getElementById('pc-gross').value) || 0;
-    const net     = parseFloat(document.getElementById('pc-net').value) || 0;
+    const gross   = parseFloat((document.getElementById('pc-gross').value||'').replace(/,/g,'')) || 0;
+    const net     = parseFloat((document.getElementById('pc-net').value||'').replace(/,/g,'')) || 0;
     const pretax  = parseFloat(document.getElementById('pc-pretax').value) || 0;
     const roth    = parseFloat(document.getElementById('pc-roth').value) || 0;
-    const balance = parseFloat(document.getElementById('pc-balance').value) || 0;
+    const balance = parseFloat((document.getElementById('pc-balance').value||'').replace(/,/g,'')) || 0;
 
     if (gross <= 0 && net <= 0) { alert(t('alertPaycheckRequired')); return; }
 
@@ -4650,11 +4650,11 @@ function buildContributionTable(grossPay, netPay, currentPretax, currentRoth, ma
 }
 
 function sendToGrowthProjector() {
-    const grossInput = parseFloat(document.getElementById('pc-gross').value) || 0;
-    const netInput = parseFloat(document.getElementById('pc-net').value) || 0;
+    const grossInput = parseFloat((document.getElementById('pc-gross').value||'').replace(/,/g,'')) || 0;
+    const netInput = parseFloat((document.getElementById('pc-net').value||'').replace(/,/g,'')) || 0;
     const pretax = parseFloat(document.getElementById('pc-pretax').value) || 0;
     const roth = parseFloat(document.getElementById('pc-roth').value) || 0;
-    const balance = parseFloat(document.getElementById('pc-balance').value) || 0;
+    const balance = parseFloat((document.getElementById('pc-balance').value||'').replace(/,/g,'')) || 0;
     const deductionRate = clientConfig.estimatedDeductionRate || 0.28;
     const gross = grossInput > 0 ? grossInput : (netInput / (1 - deductionRate));
     const totalContrib = gross * ((pretax + roth) / 100);
@@ -4665,9 +4665,9 @@ function sendToGrowthProjector() {
 
     const net = netInput > 0 ? netInput : (gross * (1 - deductionRate));
 
-    document.getElementById('cg-balance').value = balance;
-    document.getElementById('cg-gross').value = grossInput > 0 ? grossInput : gross.toFixed(2);
-    document.getElementById('cg-net').value = netInput > 0 ? netInput : net.toFixed(2);
+    document.getElementById('cg-balance').value = balance; fmtMoneyInput(document.getElementById('cg-balance'));
+    document.getElementById('cg-gross').value = grossInput > 0 ? grossInput : gross.toFixed(2); fmtMoneyInput(document.getElementById('cg-gross'));
+    document.getElementById('cg-net').value = netInput > 0 ? netInput : net.toFixed(2); fmtMoneyInput(document.getElementById('cg-net'));
     document.getElementById('cg-current-pretax').value = pretax;
     document.getElementById('cg-current-roth').value = roth;
 
@@ -4686,8 +4686,8 @@ let growthChart = null;
 
 // Auto-calculate dollar amounts and match when % or gross/net changes
 function updateGrowthCalc() {
-    const grossInput = parseFloat(document.getElementById('cg-gross').value) || 0;
-    const netInput = parseFloat(document.getElementById('cg-net').value) || 0;
+    const grossInput = parseFloat((document.getElementById('cg-gross').value||'').replace(/,/g,'')) || 0;
+    const netInput = parseFloat((document.getElementById('cg-net').value||'').replace(/,/g,'')) || 0;
     const deductionRate = clientConfig.estimatedDeductionRate || 0.28;
     const match = clientConfig.employerMatch || { ratePerDollar: 0.25, maxContribPct: 10 };
 
@@ -4731,7 +4731,7 @@ function updateGrowthCalc() {
 }
 
 function calculateGrowth() {
-    const balance    = parseFloat(document.getElementById('cg-balance').value) || 0;
+    const balance    = parseFloat((document.getElementById('cg-balance').value||'').replace(/,/g,'')) || 0;
     const age        = parseInt(document.getElementById('cg-age').value) || 0;
     const retireAge  = parseInt(document.getElementById('cg-retire-age').value) || 0;
     const returnRate = (parseFloat(document.getElementById('cg-return').value) || 7) / 100;
@@ -4744,8 +4744,8 @@ function calculateGrowth() {
     if (retireAge <= age) { alert(t('alertRetireAgeGt')); return; }
 
     // Read gross/net and pretax/roth splits to determine per-paycheck pretax vs roth amounts
-    const grossInput = parseFloat(document.getElementById('cg-gross').value) || 0;
-    const netInput = parseFloat(document.getElementById('cg-net').value) || 0;
+    const grossInput = parseFloat((document.getElementById('cg-gross').value||'').replace(/,/g,'')) || 0;
+    const netInput = parseFloat((document.getElementById('cg-net').value||'').replace(/,/g,'')) || 0;
     const deductionRate = clientConfig.estimatedDeductionRate || 0.28;
     const gross = grossInput > 0 ? grossInput : (netInput > 0 ? netInput / (1 - deductionRate) : 0);
     const net = netInput > 0 ? netInput : (grossInput > 0 ? grossInput * (1 - deductionRate) : 0);
@@ -5254,8 +5254,8 @@ function wdRenderSummary(result) {
     // 80% Income Target comparison
     const compareEl = document.getElementById('wd-income-compare');
     const proposedWithdrawal = wdStripCommas(document.getElementById('wd-withdrawalInput').value) || 0;
-    const ssInput = parseFloat(document.getElementById('ig-social-security')?.value) || 1200;
-    const pension = parseFloat(document.getElementById('ig-pension')?.value) || 0;
+    const ssInput = parseFloat((document.getElementById('ig-social-security')?.value||'').replace(/,/g,'')) || 1200;
+    const pension = parseFloat((document.getElementById('ig-pension')?.value||'').replace(/,/g,'')) || 0;
 
     // Get retirement age to check SS eligibility
     const wdRetireAge = parseInt(document.getElementById('ig-retire-age')?.value) ||
@@ -5267,8 +5267,8 @@ function wdRenderSummary(result) {
 
     // Get salary: from Income Gap, Paycheck Calculator, or Growth Projector
     const igSalary = parseFloat((document.getElementById('ig-salary')?.value || '').replace(/,/g, '')) || 0;
-    const pcGross = parseFloat(document.getElementById('pc-gross')?.value) || 0;
-    const pcNet = parseFloat(document.getElementById('pc-net')?.value) || 0;
+    const pcGross = parseFloat((document.getElementById('pc-gross')?.value||'').replace(/,/g,'')) || 0;
+    const pcNet = parseFloat((document.getElementById('pc-net')?.value||'').replace(/,/g,'')) || 0;
     const deductionRate = clientConfig.estimatedDeductionRate || 0.28;
     const grossPaycheck = pcGross > 0 ? pcGross : (pcNet > 0 ? pcNet / (1 - deductionRate) : 0);
     const annualSalary = igSalary > 0 ? igSalary : (grossPaycheck > 0 ? grossPaycheck * 26 : 0);
@@ -5899,6 +5899,16 @@ let igSalaryPeriod = 'annual';
 let igHasLongevityData = false;
 let igSnapshotCaptured = false;  // prevents overwriting snapshot on subsequent tab visits
 
+function fmtMoneyInput(el) {
+    let v = (el.value || '').replace(/[^0-9.]/g, '');
+    const dot = v.indexOf('.');
+    if (dot !== -1) v = v.slice(0, dot + 1) + v.slice(dot + 1).replace(/\./g, '').slice(0, 2);
+    const parts = v.split('.');
+    let intPart = parts[0].replace(/^0+(?=\d)/, '');
+    intPart = intPart ? Number(intPart).toLocaleString('en-US') : (parts.length > 1 ? '0' : '');
+    el.value = parts.length > 1 ? intPart + '.' + parts[1] : intPart;
+}
+
 function igFormatSalary(el) {
     let val = el.value.replace(/[^0-9]/g, '');
     if (val) el.value = parseInt(val).toLocaleString('en-US');
@@ -5949,8 +5959,8 @@ function igCaptureLongevitySnapshot() {
     if (retireVal && !document.getElementById('ig-retire-age').value) document.getElementById('ig-retire-age').value = retireVal;
 
     // Pull gross salary from Paycheck Calculator (annualized)
-    const pcGross = parseFloat(document.getElementById('pc-gross')?.value) || 0;
-    const pcNet = parseFloat(document.getElementById('pc-net')?.value) || 0;
+    const pcGross = parseFloat((document.getElementById('pc-gross')?.value||'').replace(/,/g,'')) || 0;
+    const pcNet = parseFloat((document.getElementById('pc-net')?.value||'').replace(/,/g,'')) || 0;
     const deductionRate = clientConfig.estimatedDeductionRate || 0.28;
     const grossPaycheck = pcGross > 0 ? pcGross : (pcNet > 0 ? pcNet / (1 - deductionRate) : 0);
     const igSalaryEl = document.getElementById('ig-salary');
@@ -6049,8 +6059,8 @@ function bridgeToLongevityFromGap() {
 
 // Helper: pull salary from Paycheck Calculator into Income Gap
 function igCaptureSalary() {
-    const pcGross = parseFloat(document.getElementById('pc-gross')?.value) || 0;
-    const pcNet = parseFloat(document.getElementById('pc-net')?.value) || 0;
+    const pcGross = parseFloat((document.getElementById('pc-gross')?.value||'').replace(/,/g,'')) || 0;
+    const pcNet = parseFloat((document.getElementById('pc-net')?.value||'').replace(/,/g,'')) || 0;
     const deductionRate = clientConfig.estimatedDeductionRate || 0.28;
     const grossPaycheck = pcGross > 0 ? pcGross : (pcNet > 0 ? pcNet / (1 - deductionRate) : 0);
     const igSalaryEl = document.getElementById('ig-salary');
@@ -6116,8 +6126,8 @@ function igCalculate() {
     const balance = parseFloat((document.getElementById('ig-balance').value || '').replace(/,/g, '')) || 0;
     const years = parseInt(document.getElementById('ig-years').value) || 20;
     const returnRate = parseFloat(document.getElementById('ig-return').value) || 5;
-    const ss = parseFloat(document.getElementById('ig-social-security').value) || 0;
-    const pension = parseFloat(document.getElementById('ig-pension').value) || 0;
+    const ss = parseFloat((document.getElementById('ig-social-security').value||'').replace(/,/g,'')) || 0;
+    const pension = parseFloat((document.getElementById('ig-pension').value||'').replace(/,/g,'')) || 0;
     const age = parseInt(document.getElementById('ig-age').value) || 0;
     const retireAge = parseInt(document.getElementById('ig-retire-age').value) || 0;
 
@@ -6246,8 +6256,8 @@ function igCalculate() {
         let recHtml = `<div class="ig-recommendation"><h4>${t('enrollStep3GapTitle')}</h4>`;
         recHtml += `<p>You need an additional <strong>${fmt(monthlyGap)}/month</strong> (${fmt(monthlyGap * 12)}/year) in retirement income.</p>`;
         // Get gross paycheck and current contribution %
-        const pcGross = parseFloat(document.getElementById('pc-gross')?.value) || 0;
-        const pcNet = parseFloat(document.getElementById('pc-net')?.value) || 0;
+        const pcGross = parseFloat((document.getElementById('pc-gross')?.value||'').replace(/,/g,'')) || 0;
+        const pcNet = parseFloat((document.getElementById('pc-net')?.value||'').replace(/,/g,'')) || 0;
         const deductionRate = clientConfig.estimatedDeductionRate || 0.28;
         const grossPaycheck = pcGross > 0 ? pcGross : (pcNet > 0 ? pcNet / (1 - deductionRate) : (salaryInput > 0 ? (igSalaryPeriod === 'annual' ? salaryInput / 26 : salaryInput * 12 / 26) : 0));
         const curPretax = parseFloat(document.getElementById('pc-pretax')?.value) || parseFloat(document.getElementById('cg-current-pretax')?.value) || 0;
@@ -6342,7 +6352,7 @@ function igRecalcPct() {
     // Paycheck impact: compare Pretax vs Roth for the INCREASE portion
     const curPretaxPct = parseFloat(document.getElementById('pc-pretax')?.value) || parseFloat(document.getElementById('cg-current-pretax')?.value) || 0;
     const curRothPct = parseFloat(document.getElementById('pc-roth')?.value) || parseFloat(document.getElementById('cg-current-roth')?.value) || 0;
-    const netPaycheck = parseFloat(document.getElementById('pc-net')?.value) || (grossPaycheck * (1 - (clientConfig.estimatedDeductionRate || 0.28)));
+    const netPaycheck = parseFloat((document.getElementById('pc-net')?.value||'').replace(/,/g,'')) || (grossPaycheck * (1 - (clientConfig.estimatedDeductionRate || 0.28)));
     const increasePct = Math.max(0, newPct - currentTotalPct);
 
     // Marginal income tax rate (federal + state) — this is what pretax saves
@@ -6577,14 +6587,14 @@ function enrollToggleAnnual() {
         toggleBtn.textContent = t('payTogglePaycheck') || 'Use Paycheck';
         toggleBtn.style.background = 'var(--primary)';
         toggleBtn.style.color = 'white';
-        input.placeholder = 'e.g. 65000';
+        input.placeholder = 'e.g. 65,000';
         hint.textContent = t('enrollPayHintAnnual') || 'Your total annual salary before taxes. We\'ll calculate your 2-week paycheck (÷ 26 pay periods).';
     } else {
         paySelect.style.display = '';
         toggleBtn.textContent = t('payToggleAnnual') || 'Use Annual Salary';
         toggleBtn.style.background = 'transparent';
         toggleBtn.style.color = 'var(--primary)';
-        input.placeholder = 'e.g. 2500';
+        input.placeholder = 'e.g. 2,500';
         hint.textContent = '';
     }
     enrollCalcStep1();
@@ -6596,10 +6606,10 @@ function enrollSwitchPayType() {
     const hint = document.getElementById('en-pay-hint');
     input.value = '';
     if (type === 'gross') {
-        input.placeholder = 'e.g. 2500';
+        input.placeholder = 'e.g. 2,500';
         hint.textContent = '';
     } else if (type === 'net') {
-        input.placeholder = 'e.g. 1800';
+        input.placeholder = 'e.g. 1,800';
         hint.textContent = t('enrollPayHintNet') || 'Your take-home pay after taxes and deductions (excluding 401k).';
     }
     enrollCalcStep1();
@@ -6607,7 +6617,7 @@ function enrollSwitchPayType() {
 
 function enrollCalcStep1() {
     const payType = enrollUsingAnnual ? 'annual' : document.getElementById('en-pay-type').value;
-    const payInput = parseFloat(document.getElementById('en-pay-input').value) || 0;
+    const payInput = parseFloat((document.getElementById('en-pay-input').value||'').replace(/,/g,'')) || 0;
     const pretax = parseFloat(document.getElementById('en-pretax').value) || 0;
     const roth = parseFloat(document.getElementById('en-roth').value) || 0;
 
@@ -7620,8 +7630,8 @@ function enrollCalcStep3() {
     // ── 4. INCOME SOURCES ──
     const retireAge = d.retireAge || 65;
     const ssEligible = retireAge >= 62;
-    const ss = ssEligible ? (parseFloat(document.getElementById('en-ss').value) || 0) : 0;
-    const pension = parseFloat(document.getElementById('en-pension').value) || 0;
+    const ss = ssEligible ? (parseFloat((document.getElementById('en-ss').value||'').replace(/,/g,'')) || 0) : 0;
+    const pension = parseFloat((document.getElementById('en-pension').value||'').replace(/,/g,'')) || 0;
 
     // ── 5. STORE for slider and gap adjuster ──
     enrollData._nestEgg = nestEgg;
@@ -7833,7 +7843,7 @@ function enrollStartOver() {
     const toggleBtn = document.getElementById('en-annual-toggle');
     if (toggleBtn) { toggleBtn.textContent = t('payToggleAnnual') || 'Use Annual Salary'; toggleBtn.style.background = 'transparent'; toggleBtn.style.color = 'var(--primary)'; }
     const payInputEl = document.getElementById('en-pay-input');
-    if (payInputEl) { payInputEl.value = ''; payInputEl.placeholder = 'e.g. 2500'; }
+    if (payInputEl) { payInputEl.value = ''; payInputEl.placeholder = 'e.g. 2,500'; }
     const payHint = document.getElementById('en-pay-hint');
     if (payHint) payHint.textContent = '';
 
@@ -8242,7 +8252,7 @@ function aaAddHoldingRow() {
         </div>
         <div class="calc-field">
             <label>${t('aaBalanceLabel')}</label>
-            <div class="input-with-prefix"><span>$</span><input type="number" class="aa-balance" min="0" step="0.01" placeholder="e.g. 10000"></div>
+            <div class="input-with-prefix"><span>$</span><input type="text" class="aa-balance" inputmode="decimal" placeholder="e.g. 10,000" oninput="fmtMoneyInput(this)"></div>
         </div>
         <button class="aa-remove-btn" onclick="aaRemoveHoldingRow(this)" title="Remove">&times;</button>
     `;
@@ -8267,7 +8277,7 @@ function aaAnalyzeAllocation() {
 
     for (const row of rows) {
         const ticker = row.querySelector('.aa-ticker').value.trim().toUpperCase();
-        const balance = parseFloat(row.querySelector('.aa-balance').value) || 0;
+        const balance = parseFloat((row.querySelector('.aa-balance').value||'').replace(/,/g,'')) || 0;
         if (ticker && balance > 0) {
             const fund = planFunds.find(f => f.ticker === ticker);
             if (fund) holdings.push({ ticker, balance, profile: fund, perf: fund.performance });
@@ -8422,7 +8432,7 @@ function aaRenderResults() {
 
 function aaSendToGrowth() {
     if (!aaResults) return;
-    document.getElementById('cg-balance').value = aaResults.totalBalance.toFixed(2);
+    document.getElementById('cg-balance').value = aaResults.totalBalance.toFixed(2); fmtMoneyInput(document.getElementById('cg-balance'));
 
     // Parse estimated return range (e.g. "~8-9%") to midpoint
     const avgMatch = aaResults.estReturn.avg.match(/(\d+)[^\d]+(\d+)/);
