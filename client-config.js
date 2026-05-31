@@ -124,63 +124,63 @@ const clientConfig = {
     // and Morningstar. Updated quarterly.
     planFunds: [
         // U.S. Equity — Large Cap
-        // Performance data from Fi360 Monitoring Report (12/31/2025)
+        // Performance data from Fi360 Monitoring Report (3/31/2026)
         // U.S. Equity — Large Cap
-        { ticker: 'FXAIX',  name: 'Fidelity 500 Index', category: 'U.S. Equity', stocks: 100, bonds: 0, expenseRatio: '0.02%', performance: { yr1: '17.86%', yr5: '14.41%', yr10: '14.81%' } },
-        { ticker: 'VIGAX',  name: 'Vanguard Growth Index Admiral', category: 'U.S. Equity', stocks: 100, bonds: 0, expenseRatio: '0.05%', performance: { yr1: '19.43%', yr5: '14.62%', yr10: '17.44%' } },
-        { ticker: 'VTSAX',  name: 'Vanguard Total Stock Market Index Admiral', category: 'U.S. Equity', stocks: 100, bonds: 0, expenseRatio: '0.04%', performance: { yr1: '17.12%', yr5: '13.06%', yr10: '14.24%' } },
-        { ticker: 'VFTAX',  name: 'Vanguard FTSE Social Index Admiral', category: 'U.S. Equity', stocks: 100, bonds: 0, expenseRatio: '0.13%', performance: { yr1: '17.24%', yr5: '13.50%', yr10: '15.12%' } },
+        { ticker: 'FXAIX',  name: 'Fidelity 500 Index', category: 'U.S. Equity', stocks: 100, bonds: 0, expenseRatio: '0.02%', performance: { yr1: '17.79%', yr5: '12.05%', yr10: '14.15%' } },
+        { ticker: 'VIGAX',  name: 'Vanguard Growth Index Admiral', category: 'U.S. Equity', stocks: 100, bonds: 0, expenseRatio: '0.05%', performance: { yr1: '18.25%', yr5: '11.80%', yr10: '16.12%' } },
+        { ticker: 'VTSAX',  name: 'Vanguard Total Stock Market Index Admiral', category: 'U.S. Equity', stocks: 100, bonds: 0, expenseRatio: '0.04%', performance: { yr1: '18.18%', yr5: '10.76%', yr10: '13.67%' } },
+        { ticker: 'VFTAX',  name: 'Vanguard FTSE Social Index Admiral', category: 'U.S. Equity', stocks: 100, bonds: 0, expenseRatio: '0.13%', performance: { yr1: '15.59%', yr5: '10.73%', yr10: '14.31%' } },
         // U.S. Equity — Mid Cap
-        { ticker: 'FSMDX',  name: 'Fidelity Mid Cap Index', category: 'U.S. Equity', stocks: 100, bonds: 0, expenseRatio: '0.03%', performance: { yr1: '10.57%', yr5: '8.67%', yr10: '11.01%' } },
-        { ticker: 'MJRFX',  name: 'BlackRock Mid-Cap Value Equity K', category: 'U.S. Equity', stocks: 100, bonds: 0, expenseRatio: '0.72%', performance: { yr1: '13.79%', yr5: '11.24%', yr10: '11.10%' } },
+        { ticker: 'FSMDX',  name: 'Fidelity Mid Cap Index', category: 'U.S. Equity', stocks: 100, bonds: 0, expenseRatio: '0.03%', performance: { yr1: '15.99%', yr5: '7.26%', yr10: '10.90%' } },
+        { ticker: 'MJRFX',  name: 'BlackRock Mid-Cap Value Equity K', category: 'U.S. Equity', stocks: 100, bonds: 0, expenseRatio: '0.72%', performance: { yr1: '12.29%', yr5: '7.63%', yr10: '10.49%' } },
         // U.S. Equity — Small Cap
-        { ticker: 'VSMAX',  name: 'Vanguard Small Cap Index Admiral', category: 'U.S. Equity', stocks: 100, bonds: 0, expenseRatio: '0.05%', performance: { yr1: '8.83%', yr5: '7.34%', yr10: '10.43%' } },
-        { ticker: 'VSGAX',  name: 'Vanguard Small Cap Growth Index Admiral', category: 'U.S. Equity', stocks: 100, bonds: 0, expenseRatio: '0.07%', performance: { yr1: '8.44%', yr5: '3.03%', yr10: '10.25%' } },
+        { ticker: 'VSMAX',  name: 'Vanguard Small Cap Index Admiral', category: 'U.S. Equity', stocks: 100, bonds: 0, expenseRatio: '0.05%', performance: { yr1: '19.73%', yr5: '5.67%', yr10: '10.53%' } },
+        { ticker: 'VSGAX',  name: 'Vanguard Small Cap Growth Index Admiral', category: 'U.S. Equity', stocks: 100, bonds: 0, expenseRatio: '0.07%', performance: { yr1: '20.69%', yr5: '2.56%', yr10: '10.50%' } },
         // International Equity
-        { ticker: 'FSPSX',  name: 'Fidelity International Index', category: 'International Equity', stocks: 100, bonds: 0, expenseRatio: '0.04%', performance: { yr1: '31.96%', yr5: '9.13%', yr10: '8.42%' } },
-        { ticker: 'VEMAX',  name: 'Vanguard Emerging Markets Stock Index Admiral', category: 'International Equity', stocks: 100, bonds: 0, expenseRatio: '0.13%', performance: { yr1: '24.75%', yr5: '4.62%', yr10: '8.10%' } },
-        { ticker: 'RNPGX',  name: 'American Funds New Perspective R6', category: 'International Equity', stocks: 100, bonds: 0, expenseRatio: '0.40%', performance: { yr1: '21.62%', yr5: '9.37%', yr10: '13.05%' } },
-        { ticker: 'GTDFX',  name: 'Invesco Emerging Markets ex-China R6', category: 'International Equity', stocks: 100, bonds: 0, expenseRatio: '1.01%', performance: { yr1: '30.33%', yr5: '1.83%', yr10: '7.99%' } },
-        { ticker: 'CHILX',  name: 'BlackRock China A Opportunities Institutional', category: 'International Equity', stocks: 100, bonds: 0, expenseRatio: '3.05%', performance: { yr1: '26.31%', yr5: '-1.10%', yr10: '-' } },
+        { ticker: 'FSPSX',  name: 'Fidelity International Index', category: 'International Equity', stocks: 100, bonds: 0, expenseRatio: '0.04%', performance: { yr1: '23.40%', yr5: '8.59%', yr10: '8.82%' } },
+        { ticker: 'VEMAX',  name: 'Vanguard Emerging Markets Stock Index Admiral', category: 'International Equity', stocks: 100, bonds: 0, expenseRatio: '0.13%', performance: { yr1: '21.91%', yr5: '3.85%', yr10: '7.52%' } },
+        { ticker: 'RNPGX',  name: 'American Funds New Perspective R6', category: 'International Equity', stocks: 100, bonds: 0, expenseRatio: '0.40%', performance: { yr1: '17.48%', yr5: '7.72%', yr10: '12.72%' } },
+        { ticker: 'CHILX',  name: 'BlackRock China A Opportunities Institutional', category: 'International Equity', stocks: 100, bonds: 0, expenseRatio: '2.87%', performance: { yr1: '22.77%', yr5: '-0.45%', yr10: '-' } },
         // Real Estate
-        { ticker: 'VGSLX',  name: 'Vanguard Real Estate Index Admiral', category: 'Real Estate', stocks: 100, bonds: 0, expenseRatio: '0.13%', performance: { yr1: '3.19%', yr5: '4.64%', yr10: '5.14%' } },
-        { ticker: 'CSRSX',  name: 'Cohen & Steers Realty Shares', category: 'Real Estate', stocks: 100, bonds: 0, expenseRatio: '0.93%', performance: { yr1: '2.82%', yr5: '5.72%', yr10: '6.33%' } },
+        { ticker: 'VGSLX',  name: 'Vanguard Real Estate Index Admiral', category: 'Real Estate', stocks: 100, bonds: 0, expenseRatio: '0.13%', performance: { yr1: '1.84%', yr5: '3.17%', yr10: '4.64%' } },
+        { ticker: 'CSRSX',  name: 'Cohen & Steers Realty Shares', category: 'Real Estate', stocks: 100, bonds: 0, expenseRatio: '0.93%', performance: { yr1: '3.17%', yr5: '4.71%', yr10: '6.30%' } },
         // Allocation
-        { ticker: 'FPKFX',  name: 'Fidelity Puritan K6', category: 'Moderate Allocation', stocks: 60, bonds: 40, expenseRatio: '0.33%', performance: { yr1: '11.41%', yr5: '9.49%', yr10: '-' } },
+        { ticker: 'FPKFX',  name: 'Fidelity Puritan K6', category: 'Moderate Allocation', stocks: 60, bonds: 40, expenseRatio: '0.33%', performance: { yr1: '14.26%', yr5: '8.27%', yr10: '-' } },
         // Bond / Fixed Income
-        { ticker: 'VBTLX',  name: 'Vanguard Total Bond Market Index Admiral', category: 'Bond / Fixed Income', stocks: 0, bonds: 100, expenseRatio: '0.04%', performance: { yr1: '7.15%', yr5: '-0.42%', yr10: '1.98%' } },
-        { ticker: 'PIMIX',  name: 'PIMCO Income Institutional', category: 'Bond / Fixed Income', stocks: 0, bonds: 100, expenseRatio: '0.54%', performance: { yr1: '11.04%', yr5: '3.89%', yr10: '5.09%' } },
-        { ticker: 'PFORX',  name: 'PIMCO International Bond (USD-Hedged) Institutional', category: 'Bond / Fixed Income', stocks: 0, bonds: 100, expenseRatio: '0.57%', performance: { yr1: '4.31%', yr5: '1.36%', yr10: '3.32%' } },
-        { ticker: 'BCOIX',  name: 'Baird Core Plus Bond Institutional', category: 'Bond / Fixed Income', stocks: 0, bonds: 100, expenseRatio: '0.30%', performance: { yr1: '7.47%', yr5: '0.32%', yr10: '2.87%' } },
-        { ticker: 'VMBSX',  name: 'Vanguard Mortgage-Backed Securities Index Admiral', category: 'Bond / Fixed Income', stocks: 0, bonds: 100, expenseRatio: '0.06%', performance: { yr1: '8.42%', yr5: '0.15%', yr10: '1.51%' } },
-        { ticker: 'VWEAX',  name: 'Vanguard High Yield Corporate Admiral', category: 'Bond / Fixed Income', stocks: 0, bonds: 100, expenseRatio: '0.12%', performance: { yr1: '9.46%', yr5: '4.21%', yr10: '5.69%' } },
-        { ticker: 'VFIDX',  name: 'Vanguard Intermediate-Term Investment Grade Admiral', category: 'Bond / Fixed Income', stocks: 0, bonds: 100, expenseRatio: '0.09%', performance: { yr1: '9.64%', yr5: '0.95%', yr10: '3.27%' } },
-        { ticker: 'BPLBX',  name: 'BlackRock Inflation Protected Bond K', category: 'Bond / Fixed Income', stocks: 0, bonds: 100, expenseRatio: '1.09%', performance: { yr1: '7.05%', yr5: '1.17%', yr10: '3.09%' } },
+        { ticker: 'VBTLX',  name: 'Vanguard Total Bond Market Index Admiral', category: 'Bond / Fixed Income', stocks: 0, bonds: 100, expenseRatio: '0.04%', performance: { yr1: '4.32%', yr5: '0.33%', yr10: '1.67%' } },
+        { ticker: 'PIMIX',  name: 'PIMCO Income Institutional', category: 'Bond / Fixed Income', stocks: 0, bonds: 100, expenseRatio: '0.54%', performance: { yr1: '6.91%', yr5: '3.81%', yr10: '4.85%' } },
+        { ticker: 'PFORX',  name: 'PIMCO International Bond (USD-Hedged) Institutional', category: 'Bond / Fixed Income', stocks: 0, bonds: 100, expenseRatio: '0.57%', performance: { yr1: '2.41%', yr5: '1.32%', yr10: '2.88%' } },
+        { ticker: 'BCOIX',  name: 'Baird Core Plus Bond Institutional', category: 'Bond / Fixed Income', stocks: 0, bonds: 100, expenseRatio: '0.30%', performance: { yr1: '4.57%', yr5: '0.92%', yr10: '2.54%' } },
+        { ticker: 'VMBSX',  name: 'Vanguard Mortgage-Backed Securities Index Admiral', category: 'Bond / Fixed Income', stocks: 0, bonds: 100, expenseRatio: '0.06%', performance: { yr1: '5.65%', yr5: '0.45%', yr10: '1.38%' } },
+        { ticker: 'VWEAX',  name: 'Vanguard High Yield Corporate Admiral', category: 'Bond / Fixed Income', stocks: 0, bonds: 100, expenseRatio: '0.12%', performance: { yr1: '7.10%', yr5: '4.10%', yr10: '5.38%' } },
+        { ticker: 'VFIDX',  name: 'Vanguard Intermediate-Term Investment Grade Admiral', category: 'Bond / Fixed Income', stocks: 0, bonds: 100, expenseRatio: '0.09%', performance: { yr1: '6.10%', yr5: '1.56%', yr10: '2.85%' } },
+        { ticker: 'BPLBX',  name: 'BlackRock Inflation Protected Bond K', category: 'Bond / Fixed Income', stocks: 0, bonds: 100, expenseRatio: '1.09%', performance: { yr1: '3.07%', yr5: '1.43%', yr10: '2.74%' } },
+        { ticker: 'FBIIX',  name: 'Fidelity International Bond Index', category: 'Bond / Fixed Income', stocks: 0, bonds: 100, expenseRatio: '0.06%', performance: { yr1: '2.66%', yr5: '0.56%', yr10: '-' } },
         // Stable Value
-        { ticker: 'PUTSV', name: 'Putnam Stable Value Fund', category: 'Stable Value', stocks: 0, bonds: 100, expenseRatio: '0.37%', performance: { yr1: '3.89%', yr5: '3.12%', yr10: '2.64%' } },
+        { ticker: 'PUTSV', name: 'Putnam Stable Value Fund', category: 'Stable Value', stocks: 0, bonds: 100, expenseRatio: '0.37%', performance: { yr1: '3.95%', yr5: '3.21%', yr10: '2.70%' } },
         // Money Market
-        { ticker: 'VUSXX',  name: 'Vanguard Treasury Money Market Investor', category: 'Money Market', stocks: 0, bonds: 100, expenseRatio: '0.07%', performance: { yr1: '4.23%', yr5: '3.19%', yr10: '2.13%' } },
+        { ticker: 'VUSXX',  name: 'Vanguard Treasury Money Market Investor', category: 'Money Market', stocks: 0, bonds: 100, expenseRatio: '0.07%', performance: { yr1: '4.07%', yr5: '3.37%', yr10: '2.22%' } },
         // American Funds Target Date R6 Series
-        { ticker: 'RFTTX',  name: 'American Funds Target Date 2010 R6', category: 'Target Date', stocks: 30, bonds: 70, expenseRatio: '0.29%', performance: { yr1: '13.14%', yr5: '5.72%', yr10: '6.63%' } },
-        { ticker: 'RFJTX',  name: 'American Funds Target Date 2015 R6', category: 'Target Date', stocks: 35, bonds: 65, expenseRatio: '0.30%', performance: { yr1: '13.42%', yr5: '5.94%', yr10: '6.97%' } },
-        { ticker: 'RRCTX',  name: 'American Funds Target Date 2020 R6', category: 'Target Date', stocks: 40, bonds: 60, expenseRatio: '0.30%', performance: { yr1: '14.26%', yr5: '6.24%', yr10: '7.40%' } },
-        { ticker: 'RFDTX',  name: 'American Funds Target Date 2025 R6', category: 'Target Date', stocks: 50, bonds: 50, expenseRatio: '0.31%', performance: { yr1: '14.52%', yr5: '6.39%', yr10: '8.12%' } },
-        { ticker: 'RFETX',  name: 'American Funds Target Date 2030 R6', category: 'Target Date', stocks: 60, bonds: 40, expenseRatio: '0.33%', performance: { yr1: '15.72%', yr5: '7.28%', yr10: '9.16%' } },
-        { ticker: 'RFFTX',  name: 'American Funds Target Date 2035 R6', category: 'Target Date', stocks: 68, bonds: 32, expenseRatio: '0.34%', performance: { yr1: '17.17%', yr5: '8.36%', yr10: '10.38%' } },
-        { ticker: 'RFGTX',  name: 'American Funds Target Date 2040 R6', category: 'Target Date', stocks: 75, bonds: 25, expenseRatio: '0.36%', performance: { yr1: '19.50%', yr5: '9.54%', yr10: '11.25%' } },
-        { ticker: 'RFHTX',  name: 'American Funds Target Date 2045 R6', category: 'Target Date', stocks: 82, bonds: 18, expenseRatio: '0.37%', performance: { yr1: '20.42%', yr5: '9.82%', yr10: '11.51%' } },
-        { ticker: 'RFITX',  name: 'American Funds Target Date 2050 R6', category: 'Target Date', stocks: 87, bonds: 13, expenseRatio: '0.37%', performance: { yr1: '20.43%', yr5: '9.82%', yr10: '11.58%' } },
-        { ticker: 'RFKTX',  name: 'American Funds Target Date 2055 R6', category: 'Target Date', stocks: 90, bonds: 10, expenseRatio: '0.39%', performance: { yr1: '20.74%', yr5: '9.85%', yr10: '11.59%' } },
-        { ticker: 'RFUTX',  name: 'American Funds Target Date 2060 R6', category: 'Target Date', stocks: 90, bonds: 10, expenseRatio: '0.39%', performance: { yr1: '20.77%', yr5: '9.84%', yr10: '11.58%' } },
-        { ticker: 'RFVTX',  name: 'American Funds Target Date 2065 R6', category: 'Target Date', stocks: 90, bonds: 10, expenseRatio: '0.39%', performance: { yr1: '20.73%', yr5: '9.85%', yr10: '-' } },
+        { ticker: 'RFTTX',  name: 'American Funds Target Date 2010 R6', category: 'Target Date', stocks: 30, bonds: 70, expenseRatio: '0.29%', performance: { yr1: '10.28%', yr5: '5.31%', yr10: '6.35%' } },
+        { ticker: 'RFJTX',  name: 'American Funds Target Date 2015 R6', category: 'Target Date', stocks: 35, bonds: 65, expenseRatio: '0.30%', performance: { yr1: '10.62%', yr5: '5.42%', yr10: '6.68%' } },
+        { ticker: 'RRCTX',  name: 'American Funds Target Date 2020 R6', category: 'Target Date', stocks: 40, bonds: 60, expenseRatio: '0.30%', performance: { yr1: '11.29%', yr5: '5.67%', yr10: '7.13%' } },
+        { ticker: 'RFDTX',  name: 'American Funds Target Date 2025 R6', category: 'Target Date', stocks: 50, bonds: 50, expenseRatio: '0.31%', performance: { yr1: '11.60%', yr5: '5.76%', yr10: '7.86%' } },
+        { ticker: 'RFETX',  name: 'American Funds Target Date 2030 R6', category: 'Target Date', stocks: 60, bonds: 40, expenseRatio: '0.33%', performance: { yr1: '13.12%', yr5: '6.40%', yr10: '8.90%' } },
+        { ticker: 'RFFTX',  name: 'American Funds Target Date 2035 R6', category: 'Target Date', stocks: 68, bonds: 32, expenseRatio: '0.34%', performance: { yr1: '14.63%', yr5: '7.20%', yr10: '10.10%' } },
+        { ticker: 'RFGTX',  name: 'American Funds Target Date 2040 R6', category: 'Target Date', stocks: 75, bonds: 25, expenseRatio: '0.36%', performance: { yr1: '17.42%', yr5: '8.14%', yr10: '10.91%' } },
+        { ticker: 'RFHTX',  name: 'American Funds Target Date 2045 R6', category: 'Target Date', stocks: 82, bonds: 18, expenseRatio: '0.37%', performance: { yr1: '18.26%', yr5: '8.32%', yr10: '11.13%' } },
+        { ticker: 'RFITX',  name: 'American Funds Target Date 2050 R6', category: 'Target Date', stocks: 87, bonds: 13, expenseRatio: '0.37%', performance: { yr1: '18.37%', yr5: '8.25%', yr10: '11.18%' } },
+        { ticker: 'RFKTX',  name: 'American Funds Target Date 2055 R6', category: 'Target Date', stocks: 90, bonds: 10, expenseRatio: '0.38%', performance: { yr1: '18.89%', yr5: '8.23%', yr10: '11.16%' } },
+        { ticker: 'RFUTX',  name: 'American Funds Target Date 2060 R6', category: 'Target Date', stocks: 90, bonds: 10, expenseRatio: '0.39%', performance: { yr1: '18.96%', yr5: '8.21%', yr10: '11.14%' } },
+        { ticker: 'RFVTX',  name: 'American Funds Target Date 2065 R6', category: 'Target Date', stocks: 90, bonds: 10, expenseRatio: '0.39%', performance: { yr1: '18.97%', yr5: '8.21%', yr10: '-' } },
     ],
 
     // ----------------------------------------------------------
     // Footer
     // ----------------------------------------------------------
     footerName:       'Cordoba Corporation 401(k) Plan',
-    // Update this date whenever fund performance data is refreshed (e.g., '12/31/2025' → '3/31/2026')
-    fundDataAsOf: '12/31/2025',
+    // Update this date whenever fund performance data is refreshed (e.g., '3/31/2026' → '6/30/2026')
+    fundDataAsOf: '3/31/2026',
     footerDisclaimer: null, // Built automatically in initPage using fundDataAsOf
 
     // ----------------------------------------------------------
@@ -190,14 +190,14 @@ const clientConfig = {
     targetDateNameTemplate: 'American Funds Target Date [YEAR] R6',
 
     // American Funds Target Date R6 Series — glide path brackets
-    // Performance from Fi360 Monitoring Report (12/31/2025)
+    // Performance from Fi360 Monitoring Report (3/31/2026)
     targetDateBrackets: [
-        { minYears: 25, stockBond: '~90% Stocks / ~10% Bonds', riskLevel: 'Aggressive (becomes more conservative over time)', performance: { yr1: '20.74%', yr3: '12.50%', yr5: '9.85%', yr10: '11.59%' }, allocation: ['Diversified mix of American Funds U.S. equity funds', 'American Funds international equity funds', 'American Funds bond funds and short-term funds', 'Glide path automatically adjusts toward bonds as you near [YEAR]'] },
-        { minYears: 20, stockBond: '~85% Stocks / ~15% Bonds', riskLevel: 'Moderately Aggressive (becomes more conservative over time)', performance: { yr1: '20.43%', yr3: '12.30%', yr5: '9.82%', yr10: '11.58%' }, allocation: ['Diversified mix of American Funds U.S. equity funds', 'American Funds international equity funds', 'American Funds bond funds and short-term funds', 'Glide path automatically adjusts toward bonds as you near [YEAR]'] },
-        { minYears: 15, stockBond: '~75% Stocks / ~25% Bonds', riskLevel: 'Moderate Growth (becomes more conservative over time)', performance: { yr1: '19.50%', yr3: '11.80%', yr5: '9.54%', yr10: '11.25%' }, allocation: ['Diversified mix of American Funds U.S. equity funds', 'American Funds international equity funds', 'American Funds investment-grade bond funds', 'Glide path automatically adjusts toward bonds as you near [YEAR]'] },
-        { minYears: 10, stockBond: '~68% Stocks / ~32% Bonds', riskLevel: 'Moderate (becomes more conservative over time)', performance: { yr1: '17.17%', yr3: '10.80%', yr5: '8.36%', yr10: '10.38%' }, allocation: ['Diversified mix of American Funds U.S. equity funds', 'American Funds international equity funds', 'American Funds investment-grade and high-yield bond funds', 'Glide path automatically adjusts toward bonds as you near [YEAR]'] },
-        { minYears: 5, stockBond: '~50% Stocks / ~50% Bonds', riskLevel: 'Moderately Conservative (near target date)', performance: { yr1: '14.52%', yr3: '9.50%', yr5: '6.39%', yr10: '8.12%' }, allocation: ['Diversified mix of American Funds U.S. equity funds', 'American Funds international equity funds', 'American Funds investment-grade bond funds', 'American Funds short-term funds', 'Glide path automatically adjusts toward bonds as you near [YEAR]'] },
-        { minYears: -1, stockBond: '~30% Stocks / ~55% Bonds / ~15% Cash', riskLevel: 'Conservative (at or past target date)', performance: { yr1: '13.14%', yr3: '8.40%', yr5: '5.72%', yr10: '6.63%' }, allocation: ['~15% American Funds U.S. Equity', '~15% American Funds International Equity', '~40% American Funds Domestic Bonds', '~15% American Funds International Bonds', '~15% American Funds Short-Term / Cash', 'Designed for investors at or past retirement'] }
+        { minYears: 25, stockBond: '~90% Stocks / ~10% Bonds', riskLevel: 'Aggressive (becomes more conservative over time)', performance: { yr1: '18.89%', yr3: '15.50%', yr5: '8.23%', yr10: '11.16%' }, allocation: ['Diversified mix of American Funds U.S. equity funds', 'American Funds international equity funds', 'American Funds bond funds and short-term funds', 'Glide path automatically adjusts toward bonds as you near [YEAR]'] },
+        { minYears: 20, stockBond: '~85% Stocks / ~15% Bonds', riskLevel: 'Moderately Aggressive (becomes more conservative over time)', performance: { yr1: '18.37%', yr3: '15.32%', yr5: '8.25%', yr10: '11.18%' }, allocation: ['Diversified mix of American Funds U.S. equity funds', 'American Funds international equity funds', 'American Funds bond funds and short-term funds', 'Glide path automatically adjusts toward bonds as you near [YEAR]'] },
+        { minYears: 15, stockBond: '~75% Stocks / ~25% Bonds', riskLevel: 'Moderate Growth (becomes more conservative over time)', performance: { yr1: '17.42%', yr3: '14.73%', yr5: '8.14%', yr10: '10.91%' }, allocation: ['Diversified mix of American Funds U.S. equity funds', 'American Funds international equity funds', 'American Funds investment-grade bond funds', 'Glide path automatically adjusts toward bonds as you near [YEAR]'] },
+        { minYears: 10, stockBond: '~68% Stocks / ~32% Bonds', riskLevel: 'Moderate (becomes more conservative over time)', performance: { yr1: '14.63%', yr3: '12.98%', yr5: '7.20%', yr10: '10.10%' }, allocation: ['Diversified mix of American Funds U.S. equity funds', 'American Funds international equity funds', 'American Funds investment-grade and high-yield bond funds', 'Glide path automatically adjusts toward bonds as you near [YEAR]'] },
+        { minYears: 5, stockBond: '~50% Stocks / ~50% Bonds', riskLevel: 'Moderately Conservative (near target date)', performance: { yr1: '11.60%', yr3: '10.34%', yr5: '5.76%', yr10: '7.86%' }, allocation: ['Diversified mix of American Funds U.S. equity funds', 'American Funds international equity funds', 'American Funds investment-grade bond funds', 'American Funds short-term funds', 'Glide path automatically adjusts toward bonds as you near [YEAR]'] },
+        { minYears: -1, stockBond: '~30% Stocks / ~55% Bonds / ~15% Cash', riskLevel: 'Conservative (at or past target date)', performance: { yr1: '10.28%', yr3: '9.09%', yr5: '5.31%', yr10: '6.35%' }, allocation: ['~15% American Funds U.S. Equity', '~15% American Funds International Equity', '~40% American Funds Domestic Bonds', '~15% American Funds International Bonds', '~15% American Funds Short-Term / Cash', 'Designed for investors at or past retirement'] }
     ],
 
     // ----------------------------------------------------------
@@ -228,7 +228,7 @@ const clientConfig = {
     // ----------------------------------------------------------
     fundData: {
 
-        // -- Model Portfolios (Fi360 data as of 12/31/2025) --------------------
+        // -- Model Portfolios (Fi360 data as of 3/31/2026) --------------------
 
         modelAggressive: {
             id: 'modelAggressive',
@@ -242,9 +242,9 @@ const clientConfig = {
             turnover: 'Low',
             minInvestment: 'None',
             bestFor: 'Participants with 20+ years to retirement who want maximum growth potential and can tolerate significant short-term volatility.',
-            performance: { yr1: '14.35%', yr3: '14.31%', yr5: '7.45%', yr10: '-' },
-            stats: { sharpe3yr: '0.83', stdDev3yr: '11.07%', inception: '6/1/2020', rebalance: 'Manual' },
-            description: 'The Cordoba Aggressive Model is constructed using individual funds available in the Cordoba Corporation 401(k) plan. It targets approximately 85% equity across U.S. large-cap, mid-cap, small-cap, international, and real estate, with about 15% in inflation-protected bonds and international bonds for modest diversification. The portfolio has delivered 14.31% annualized 3-year returns, outperforming its peer group benchmark of 12.61%.',
+            performance: { yr1: '14.90%', yr3: '12.04%', yr5: '6.19%', yr10: '-' },
+            stats: { sharpe3yr: '0.66', stdDev3yr: '11.04%', inception: '6/1/2020', rebalance: 'Manual' },
+            description: 'The Cordoba Aggressive Model is constructed using individual funds available in the Cordoba Corporation 401(k) plan. It targets approximately 85% equity across U.S. large-cap, mid-cap, small-cap, international, and real estate, with about 15% in inflation-protected bonds and international bonds for modest diversification. The portfolio has delivered 12.04% annualized 3-year returns, outperforming its peer group benchmark of 10.60%.',
             allocation: [
                 '20.00% Fidelity 500 Index (FXAIX)',
                 '15.00% Fidelity International Index (FSPSX)',
@@ -255,8 +255,8 @@ const clientConfig = {
                 '10.00% Vanguard Real Estate Index Admiral (VGSLX)',
                 '5.00% PIMCO International Bond (USD-Hdg) Instl (PFORX)'
             ],
-            pros: ['Highest growth potential: 14.31% annualized 3-year return', 'Very low expense ratio of 0.17%', 'Broad diversification across 8 funds and multiple asset classes', 'Outperformed peer group benchmark since inception (10.61% vs 9.99%)'],
-            cons: ['Highest volatility (11.07% standard deviation)', 'Requires understanding that short-term losses are normal', 'Not suitable for participants nearing retirement']
+            pros: ['Highest growth potential: 12.04% annualized 3-year return', 'Very low expense ratio of 0.17%', 'Broad diversification across 8 funds and multiple asset classes', 'Outperformed peer group benchmark since inception (9.92% vs 9.37%)'],
+            cons: ['Highest volatility (11.04% standard deviation)', 'Requires understanding that short-term losses are normal', 'Not suitable for participants nearing retirement']
         },
 
         modelModerate: {
@@ -271,9 +271,9 @@ const clientConfig = {
             turnover: 'Low',
             minInvestment: 'None',
             bestFor: 'Participants with 15-25 years to retirement seeking growth with meaningful fixed-income protection.',
-            performance: { yr1: '11.79%', yr3: '14.03%', yr5: '7.12%', yr10: '-' },
-            stats: { sharpe3yr: '0.84', stdDev3yr: '10.53%', inception: '6/1/2020', rebalance: 'Manual' },
-            description: 'The Cordoba Moderate Model targets 60% equity and 40% fixed income. It includes broad U.S. equity exposure through large-cap, mid-cap, and small-cap index funds, international diversification, real estate, and a substantial bond allocation through diversified bond funds. The portfolio has the highest Sharpe ratio (0.84) among the four models, indicating excellent risk-adjusted returns.',
+            performance: { yr1: '11.31%', yr3: '11.90%', yr5: '6.09%', yr10: '-' },
+            stats: { sharpe3yr: '0.69', stdDev3yr: '10.25%', inception: '6/1/2020', rebalance: 'Manual' },
+            description: 'The Cordoba Moderate Model targets 60% equity and 40% fixed income. It includes broad U.S. equity exposure through large-cap, mid-cap, and small-cap index funds, international diversification, real estate, and a substantial bond allocation through diversified bond funds. The portfolio has the highest Sharpe ratio (0.69) among the four models, indicating excellent risk-adjusted returns.',
             allocation: [
                 '15.00% Fidelity 500 Index (FXAIX)',
                 '10.00% BlackRock Inflation Protected Bond K (BPLBX)',
@@ -286,8 +286,8 @@ const clientConfig = {
                 '10.00% Vanguard Total Bond Market Index Admiral (VBTLX)',
                 '5.00% Vanguard Growth Index Admiral (VIGAX)'
             ],
-            pros: ['Best risk-adjusted returns: highest Sharpe ratio (0.84) of all models', 'Strong 3-year return of 14.03%, outperforming peer benchmark (12.44%)', 'Broad diversification across 10 funds and multiple asset classes', 'Balanced 60/40 equity-to-bond ratio provides meaningful downside protection'],
-            cons: ['Moderate volatility (10.53% standard deviation)', 'Higher expense ratio (0.21%) than Balance and Conservative models', 'Less growth potential than the Aggressive model']
+            pros: ['Best risk-adjusted returns: highest Sharpe ratio (0.69) of all models', 'Strong 3-year return of 11.90%, outperforming peer benchmark (10.59%)', 'Broad diversification across 10 funds and multiple asset classes', 'Balanced 60/40 equity-to-bond ratio provides meaningful downside protection'],
+            cons: ['Moderate volatility (10.25% standard deviation)', 'Higher expense ratio (0.21%) than Balance and Conservative models', 'Less growth potential than the Aggressive model']
         },
 
         modelBalance: {
@@ -302,8 +302,8 @@ const clientConfig = {
             turnover: 'Low',
             minInvestment: 'None',
             bestFor: 'Participants with 10-20 years to retirement who want balanced growth and stability.',
-            performance: { yr1: '11.67%', yr3: '12.78%', yr5: '6.36%', yr10: '-' },
-            stats: { sharpe3yr: '0.80', stdDev3yr: '9.52%', inception: '6/1/2020', rebalance: 'Quarterly' },
+            performance: { yr1: '11.64%', yr3: '10.59%', yr5: '5.46%', yr10: '-' },
+            stats: { sharpe3yr: '0.62', stdDev3yr: '9.26%', inception: '6/1/2020', rebalance: 'Quarterly' },
             description: 'The Cordoba Balance Model targets 60% equity, 30% fixed income, and 10% in money market. It balances growth through U.S. and international equities with meaningful fixed-income protection through diversified bond funds and a cash allocation. The portfolio is rebalanced quarterly and has the lowest expense ratio (0.15%) among the four models.',
             allocation: [
                 '23.00% Fidelity 500 Index (FXAIX)',
@@ -319,8 +319,8 @@ const clientConfig = {
                 '5.00% Vanguard Growth Index Admiral (VIGAX)',
                 '5.00% Vanguard Interm-Term Investment Grade Admiral (VFIDX)'
             ],
-            pros: ['Lowest expense ratio of all models at 0.15%', 'Balanced approach: 12.78% annualized 3-year return with moderate risk', '10% cash allocation provides stability and liquidity', 'Quarterly rebalancing maintains target allocation'],
-            cons: ['Lower growth potential than the Moderate and Aggressive models', 'Moderate volatility (9.52% standard deviation)', 'Cash allocation may lag inflation in rising-rate environments']
+            pros: ['Lowest expense ratio of all models at 0.15%', 'Balanced approach: 10.59% annualized 3-year return with moderate risk', '10% cash allocation provides stability and liquidity', 'Quarterly rebalancing maintains target allocation'],
+            cons: ['Lower growth potential than the Moderate and Aggressive models', 'Moderate volatility (9.26% standard deviation)', 'Cash allocation may lag inflation in rising-rate environments']
         },
 
         modelConservative: {
@@ -335,9 +335,9 @@ const clientConfig = {
             turnover: 'Low',
             minInvestment: 'None',
             bestFor: 'Participants nearing retirement or those who prioritize capital preservation over growth.',
-            performance: { yr1: '10.72%', yr3: '12.03%', yr5: '5.70%', yr10: '-' },
-            stats: { sharpe3yr: '0.80', stdDev3yr: '8.62%', inception: '6/1/2020', rebalance: 'Quarterly' },
-            description: 'The Cordoba Conservative Model targets 45% equity, 40% fixed income, and 15% in money market. This portfolio emphasizes capital preservation while maintaining modest growth potential through a diversified equity allocation. The large cash and bond allocations help cushion against market downturns. The portfolio has outperformed its peer group benchmark since inception (8.04% vs 7.37%).',
+            performance: { yr1: '9.79%', yr3: '10.06%', yr5: '4.91%', yr10: '-' },
+            stats: { sharpe3yr: '0.63', stdDev3yr: '8.27%', inception: '6/1/2020', rebalance: 'Quarterly' },
+            description: 'The Cordoba Conservative Model targets 45% equity, 40% fixed income, and 15% in money market. This portfolio emphasizes capital preservation while maintaining modest growth potential through a diversified equity allocation. The large cash and bond allocations help cushion against market downturns. The portfolio has outperformed its peer group benchmark since inception (7.52% vs 6.91%).',
             allocation: [
                 '25.00% Fidelity 500 Index (FXAIX)',
                 '15.00% Vanguard Total Bond Market Index Admiral (VBTLX)',
@@ -351,7 +351,7 @@ const clientConfig = {
                 '5.00% Vanguard Real Estate Index Admiral (VGSLX)',
                 '5.00% Vanguard Small Cap Index Admiral (VSMAX)'
             ],
-            pros: ['Lowest volatility: 8.62% standard deviation', 'Substantial 15% cash allocation provides stability and liquidity', 'Outperformed peer group benchmark since inception (8.04% vs 7.37%)', 'Low expense ratio of 0.18%'],
+            pros: ['Lowest volatility: 8.27% standard deviation', 'Substantial 15% cash allocation provides stability and liquidity', 'Outperformed peer group benchmark since inception (7.52% vs 6.91%)', 'Low expense ratio of 0.18%'],
             cons: ['Lowest growth potential among the four models', 'Large cash allocation may underperform inflation over long periods', 'Conservative allocation may not keep pace with spending needs over long retirements']
         },
 
@@ -390,7 +390,7 @@ const clientConfig = {
             turnover: 'Moderate',
             minInvestment: 'None',
             bestFor: 'Participants seeking a single professionally managed balanced fund with moderate risk.',
-            performance: { yr1: '11.41%', yr3: '13.90%', yr5: '9.49%', yr10: '-' },
+            performance: { yr1: '14.26%', yr3: '14.17%', yr5: '8.27%', yr10: '-' },
             description: 'The Fidelity Puritan K6 Fund seeks income and capital growth by investing approximately 60% of assets in stocks and 40% in bonds. Managed by Fidelity, this balanced fund offers a moderate approach combining equity growth potential with bond income and stability. It serves as the plan\'s default investment (QDIA) for participants who do not make an active investment election.',
             allocation: [
                 '~60% U.S. and International Equities',
